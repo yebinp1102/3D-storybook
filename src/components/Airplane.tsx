@@ -20,13 +20,17 @@ const Airplane = (props: any) => {
       <mesh 
         geometry={nodes.PUSHILIN_Plane_Circle000.geometry} 
         material={materials.plane} 
-      />
+      >
+        <meshStandardMaterial color="white" />
+      </mesh>
       <mesh 
         ref={helix}
         geometry={nodes.PUSHILIN_Plane_Helix.geometry} 
         material={materials.plane} 
         position={[1.09, 0.23, 0]} 
-      />
+      >
+        <meshStandardMaterial color="white" />
+      </mesh>
     </group>
   )
 }

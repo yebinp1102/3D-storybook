@@ -21,7 +21,7 @@ const Experience = () => {
   const curve = useMemo(() => {
     return new THREE.CatmullRomCurve3([
       new THREE.Vector3(0, 0, 0),
-      new THREE.Vector3(0, 0, -CURVE_DISTANCE),
+      new THREE.Vector3(0, 0, -1 * CURVE_DISTANCE),
       new THREE.Vector3(100, 0, -2 * CURVE_DISTANCE),
       new THREE.Vector3(-100, 0, -3 * CURVE_DISTANCE),
       new THREE.Vector3(100, 0, -4 * CURVE_DISTANCE),
@@ -40,8 +40,8 @@ const Experience = () => {
 
   const shape = useMemo(() => {
     const shape = new THREE.Shape();
-    shape.moveTo(0, -0.2);
-    shape.lineTo(0, 0.2);
+    shape.moveTo(0, -0.08);
+    shape.lineTo(0, 0.08);
 
     return shape;
   }, [curve]);
@@ -119,6 +119,7 @@ const Experience = () => {
 
   return (
     <>
+      <directionalLight position={[0, 3, 1]} intensity={0.1} />
       {/* <OrbitControls /> */}
       {/* airplane model */}
       <group ref={cameraGroup}>
@@ -151,7 +152,7 @@ const Experience = () => {
         </Text>
       </group>
 
-      <group position={[1, 0, -40]}>
+      <group position={[0.5, 0, -40]}>
         <Text
           color="white"
           anchorX={"left"}
@@ -191,28 +192,28 @@ const Experience = () => {
               }
             ]}
           />
-          <meshStandardMaterial color={"white"} opacity={0.7} transparent />
+          <meshStandardMaterial color={"white"} opacity={1} transparent envMapIntensity={2} />
         </mesh>
       </group>
 
       {/* CLOUDS */}
-      <Cloud opacity={0.6} scale={[1, 1, 1.5]} position={[-3.5, -1.2, -7]} />
-      <Cloud opacity={0.6} scale={[1, 1, 2]} position={[3.5, -1, -10]} rotation-y={Math.PI} />
+      <Cloud opacity={1} scale={[1, 1, 1.5]} position={[-3.5, -1.2, -7]} />
+      <Cloud opacity={1} scale={[1, 1, 2]} position={[3.5, -1, -10]} rotation-y={Math.PI} />
       <Cloud 
-        opacity={0.9}
+        opacity={1}
         scale={[1, 1, 1]}
         position={[-3.5, 0.2, -12]}
         rotation-y={Math.PI / 3}
       />
-      <Cloud opacity={0.9} scale={[1, 1, 1]} position={[3.5, 0.2, -12]} />
+      <Cloud opacity={1} scale={[1, 1, 1]} position={[3.5, 0.2, -12]} />
 
-      <Cloud opacity={0.4}
+      <Cloud opacity={1}
         scale={[0.4, 0.4, 0.4]}
         rotation-y={Math.PI / 9}
         position={[1, -0.2, -12]}
       />
-      <Cloud opacity={0.6} scale={[0.3, 0.5, 2]} position={[-4, -0.5, -53]} />
-      <Cloud opacity={0.7} scale={[0.8, 0.8, 0.8]} position={[-1, -1.5, -100]} />
+      <Cloud opacity={1} scale={[0.3, 0.5, 2]} position={[-4, -0.5, -53]} />
+      <Cloud opacity={1} scale={[0.8, 0.8, 0.8]} position={[-1, -1.5, -100]} />
     </>
   )
 }

@@ -7,7 +7,7 @@ const Cloud = ({opacity, ...props}: any) => {
     <group {...props} dispose={null}>
       <mesh geometry={nodes.Node.geometry}>
         <meshStandardMaterial 
-          {...materials['lambert2SG.001']}
+          envMapIntensity={2}
           transparent
           opacity={opacity}
         />
