@@ -12,6 +12,10 @@ ul, li{
   list-style-type: none;
 }
 
+input:focus{
+  outline: none;
+}
+
 ::-webkit-scrollbar{
   width: 6px;
 }
@@ -24,3 +28,9 @@ ul, li{
   background: white;
   height: 10%;
 }
+
+
+.logo_shadow{
+  text-shadow: 1px 1px 4px #9A2D2F;
+}
+
