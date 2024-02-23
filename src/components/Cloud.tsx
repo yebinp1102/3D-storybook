@@ -1,11 +1,11 @@
 import { useGLTF } from "@react-three/drei";
 
 const Cloud = ({opacity, ...props}: any) => {
-  const {nodes, materials} = useGLTF('./models/cloud.glb');
+  const {nodes} = useGLTF('./models/cloud.gltf');
 
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Node.geometry}>
+      <mesh geometry={nodes.Mball001.geometry}>
         <meshStandardMaterial 
           envMapIntensity={2}
           transparent
@@ -18,4 +18,4 @@ const Cloud = ({opacity, ...props}: any) => {
 
 export default Cloud
 
-useGLTF.preload("./models/cloud.glb");
+useGLTF.preload("./models/cloud.gltf");
