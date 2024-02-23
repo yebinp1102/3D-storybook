@@ -6,7 +6,6 @@ const ExploreProjects = () => {
   return (
     <div className='w-screen h-screen'>
       <Canvas>
-        <color attach="background" args={['#ececec']} />
         <ScrollControls pages={100} damping={1}>
           <Experience />
         </ScrollControls>
