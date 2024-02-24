@@ -1,6 +1,7 @@
 import { ScrollControls } from '@react-three/drei'
 import { Canvas } from '@react-three/fiber'
 import Experience from '../components/Experience'
+import { EffectComposer, Noise } from '@react-three/postprocessing'
 
 const ExploreProjects = () => {
   return (
@@ -9,6 +10,9 @@ const ExploreProjects = () => {
         <ScrollControls pages={100} damping={1}>
           <Experience />
         </ScrollControls>
+        <EffectComposer>
+          <Noise opacity={0.1} />
+        </EffectComposer>
       </Canvas>
     </div>
   )

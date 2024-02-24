@@ -7,6 +7,7 @@ import { useLayoutEffect, useMemo, useRef } from "react";
 import { useFrame } from "@react-three/fiber";
 import TextSection from "./TextSection";
 import {gsap} from "gsap";
+import { fadeOnBeforeCompile } from "../utils/fadeMaterial";
 
 const LINE_NB_POINTS = 12000;
 const CURVE_DISTANCE = 250;
@@ -449,7 +450,13 @@ const Experience = () => {
               }
             ]}
           />
-          <meshStandardMaterial color={"white"} opacity={1} transparent envMapIntensity={2} />
+          <meshStandardMaterial 
+            color={"white"} 
+            opacity={1} 
+            transparent 
+            envMapIntensity={2} 
+            onBeforeCompile={fadeOnBeforeCompile}
+          />
         </mesh>
       </group>
 

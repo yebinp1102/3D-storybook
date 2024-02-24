@@ -1,4 +1,5 @@
 import { useGLTF } from "@react-three/drei";
+import { fadeOnBeforeCompile } from "../utils/fadeMaterial";
 
 const Cloud = ({opacity, ...props}: any) => {
   const {nodes} = useGLTF('./models/cloud.gltf');
@@ -10,6 +11,7 @@ const Cloud = ({opacity, ...props}: any) => {
           envMapIntensity={2}
           transparent
           opacity={opacity}
+          onBeforeCompile={fadeOnBeforeCompile}
         />
       </mesh>
     </group>
