@@ -34,3 +34,6 @@ input:focus{
   text-shadow: 1px 1px 4px #9A2D2F;
 }
 
+.logo_shadow_menu{
+  text-shadow: -0.7px -0.7px 0 #9A2D2F, 0.7px -0.7px 0 #9A2D2F, -0.7px 0.7px 0 #9A2D2F, 0.7px 0.7px 0 #9A2D2F;
+}

@@ -3,6 +3,7 @@ import ExploreProjects from "./pages/ExploreProjects";
 import Home from "./pages/Home";
 import AuthLayout from "./pages/AuthLayout";
 import AuthForm from "./components/AuthForm";
+import RootLayout from "./pages/RootLayout";
 
 const App = () => {
   return (
@@ -13,8 +14,10 @@ const App = () => {
           <Route path="/register" element={<AuthForm type={"Register"} />} />
         </Route>
         
-        <Route path="/" element={<Home />} />
-        <Route path="/explore_projects" element={<ExploreProjects />} />
+        <Route element={<RootLayout />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/explore_projects" element={<ExploreProjects />} />
+        </Route>
       </Routes>
     </div>
   )
