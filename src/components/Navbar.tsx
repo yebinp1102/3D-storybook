@@ -1,15 +1,19 @@
 import { useNavigate } from 'react-router-dom'
 import logoIcon from '../../public/images/logo.svg'
-import { useState } from 'react';
 import arrowUp from '../../public/images/arrowUp.svg'
 import arrowDown from '../../public/images/arrowDown.svg'
 import userIcon from '../../public/images/userIcon.svg'
 import cartIcon from '../../public/images/cart.svg'
 import searchIcon from '../../public/images/search.svg'
 
-const Navbar = () => {
+type Props = {
+  toggleOn: boolean;
+  setToggleOn: React.Dispatch<React.SetStateAction<boolean>>
+}
+
+const Navbar = ({toggleOn, setToggleOn} : Props) => {
   const navigate = useNavigate();
-  const [toggleOn, setToggleOn] = useState<boolean>(true);
+
   return (
     <div className={`w-full bg-white border transition-all border-slate-300 fixed ${!toggleOn && ' -translate-y-[100px]'}`}>
       {/* top nav */}
@@ -22,7 +26,7 @@ const Navbar = () => {
         <ul className="flex gap-5">
           <img src={searchIcon} alt='user_icon' className='w-5 mr-1.5 cursor-pointer' />
           <img src={userIcon} alt='user_icon' className='w-6 cursor-pointer' />
-          <img src={cartIcon} alt='user_icon' className='w-6 cursor-pointer' />
+          <img src={cartIcon} alt='user_icon' onClick={() => navigate('/cart')} className='w-6 cursor-pointer' />
         </ul>
       </div>
       {/* bottom nav */}
