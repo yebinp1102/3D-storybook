@@ -15,7 +15,7 @@ const Navbar = ({toggleOn, setToggleOn} : Props) => {
   const navigate = useNavigate();
 
   return (
-    <div className={`w-full bg-white border transition-all border-slate-300 fixed ${!toggleOn && ' -translate-y-[100px]'}`}>
+    <div className={`w-full z-[100] bg-white border transition-all border-slate-300 fixed top-0 left-0 ${!toggleOn && ' -translate-y-[100px]'}`}>
       {/* top nav */}
       <div className="max-w-7xl mx-auto flex justify-between items-center p-2 px-8 border-b border-slate-300">
         <ul className="flex gap-7 text-sm text-slate-500">

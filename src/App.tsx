@@ -5,10 +5,11 @@ import AuthLayout from "./pages/AuthLayout";
 import AuthForm from "./components/AuthForm";
 import RootLayout from "./pages/RootLayout";
 import Cart from "./pages/Cart";
+import Order from "./pages/Order";
 
 const App = () => {
   return (
-    <div className="w-screen h-full">
+    <div className="w-screen">
       <Routes>
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<AuthForm type={"Login"} />} />
@@ -19,6 +20,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/explore_projects" element={<ExploreProjects />} />
           <Route path="/cart" element={<Cart />} />
+          <Route path="/order" element={<Order />} />
         </Route>
       </Routes>
     </div>
