@@ -25,6 +25,17 @@ input:focus{
   height: 10%;
 }
 
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+/* Firefox */
+input[type=number] {
+  -moz-appearance: textfield;
+}
+
 
 .logo_shadow{
   text-shadow: 1px 1px 4px #9A2D2F;
