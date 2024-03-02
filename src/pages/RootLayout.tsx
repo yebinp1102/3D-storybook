@@ -1,6 +1,7 @@
 import { Outlet } from "react-router-dom"
 import Navbar from "../components/Navbar"
 import { useState } from "react";
+import Footer from "../components/Footer";
 
 const RootLayout = () => {
   const [toggleOn, setToggleOn] = useState<boolean>(true);
@@ -11,6 +12,7 @@ const RootLayout = () => {
       <div className={`w-full transition-all ${toggleOn ? 'pt-32' : 'pt-8'}`}>
         <Outlet />
       </div>
+      <Footer />
     </div>
   )
 }
