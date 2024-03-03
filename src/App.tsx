@@ -6,6 +6,7 @@ import AuthForm from "./components/AuthForm";
 import RootLayout from "./pages/RootLayout";
 import Cart from "./pages/Cart";
 import Order from "./pages/Order";
+import Detail from "./pages/Detail";
 
 const App = () => {
   return (
@@ -20,6 +21,7 @@ const App = () => {
           <Route path="/" element={<Home />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/order" element={<Order />} />
+          <Route path="/detail" element={<Detail />} />
         </Route>
         <Route path="/explore_projects" element={<ExploreProjects />} />
       </Routes>

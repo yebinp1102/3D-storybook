@@ -5,7 +5,7 @@ import FaceBook from '../../public/images/facebook.svg';
 
 const Footer = () => {
   return (
-    <div className="bg-primary-skyblue text-blue-600 text-sm">
+    <div className="relative bg-primary-skyblue text-blue-600 text-sm z-50">
       <div className="max-w-6xl w-full mx-auto flex_col items-center py-4">
         <div className="flex-between max-w-5xl py-8 w-full">
           {/* company */}

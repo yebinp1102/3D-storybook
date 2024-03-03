@@ -9,7 +9,7 @@ const RootLayout = () => {
   return (
     <div className="w-full bg-slate-100">
       <Navbar toggleOn={toggleOn} setToggleOn={setToggleOn} />
-      <div className={`w-full transition-all ${toggleOn ? 'pt-32' : 'pt-8'}`}>
+      <div className={`w-full transition-all ${toggleOn ? 'pt-[122px]' : 'pt-[0px]'}`}>
         <Outlet />
       </div>
       <Footer />
