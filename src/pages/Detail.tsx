@@ -1,44 +1,72 @@
-import Bg from '../../public/images/Royal_Heath.png'
+import Bg from '../../public/images/thumbnail.png'
 import StarFull from '../../public/images/starFull.svg';
 import StarHalf from '../../public/images/starHalf.svg';
 import Eye from '../../public/images/eye.svg';
 import Book from '../../public/images/book.svg';
 import PlusCircle from '../../public/images/plusCircle.svg';
+import Award from '../../public/images/award.svg'
+import Plus from '../../public/images/plus.svg';
+import Cart from '../../public/images/cart.svg';
 
 const Detail = () => {
   return (
     <div>
-      <div className="w-full flex_col relative bg-blue-500 pb-28">
+      <div className="w-full flex_col relative pb-28 bg-indigo-300">
         <img 
           src={Bg}
           alt='bg_banner'
           className='absolute w-full object-cover h-[700px] top-0 left-0 z-1'
         />
 
-        <div className='flex_col gap-12 mt-[400px] z-10 bg-white bg-opacity-40 max-w-7xl w-full mx-auto p-8'>
+        <div className='flex_col gap-12 mt-[400px] z-10 max-w-7xl w-full mx-auto p-8'>
           {/* 컨텐츠 소개 */}
           <div className="flex_col">
-            <div className='flex-between border-b-2 border-white pb-4'>
-              <h1>Story Title (2024) </h1>
+            <div className='flex-between border-b-2 border-primary-yellow pb-4'>
+              <h1 className='text-2xl font-bold text-primary-yellow'>Story Title (2024)</h1>
+              {/* btns */}
               <ul className='flex gap-4 text-sm'>
-                <button className='bg-white px-6 py-0.5 rounded-md'>버튼1</button>
-                <button className='bg-white px-6 py-0.5 bg-opacity-60 rounded-md'>버튼2</button>
-                <button className='bg-white px-6 py-0.5 bg-opacity-60 rounded-md'>버튼3</button>
+                
+                <button className='bg-primary-yellow flex-center gap-2 text-slate-600 px-4 py-1 rounded-md'>
+                  <img src={Award} alt='award_icon' className='w-5' />
+                  Top 10
+                </button>
+
+                <button 
+                  className='bg-white px-3 flex-center gap-1 py-1 bg-opacity-50 text-slate-600 rounded-md'
+                >
+                  <img src={Plus} alt='plus_icon' className='w-[18px]' />
+                  리스트 추가
+                </button>
+
+                <button className='bg-white flex-center gap-1.5 px-6 py-1 bg-opacity-50 text-slate-600 rounded-md'>
+                  <img src={Cart} alt='award_icon' className='w-[18px]' />
+                  카트 담기
+                </button>
               </ul>
             </div>
+
             <div className='py-4 flex gap-8'>
 
               {/* img */}
               <div className="flex_col gap-4">
                 <img 
-                  src=""
+                  src={Bg}
                   alt='동화_이미지'
-                  className='bg-white w-[220px] h-[340px]'
+                  className='border min-w-[220px] h-[340px] relative w-full object-cover'
                 />
                 <ul className='flex_col gap-4'>
-                  <button className='bg-white py-1 rounded-md'>지금 읽기</button>
-                  <button className='bg-white bg-opacity-60 py-1 rounded-md'>리스트에 추가하기</button>
-                  <button className='bg-white bg-opacity-60 py-1 rounded-md'>카트에 담기</button>
+                  <button className='bg-primary-yellow border flex-center gap-1.5 text-slate-700 shadow-md py-1 rounded-md'>
+                    <img src={Book} alt='book_icon' className='w-6' />
+                    지금 읽기
+                  </button>
+                  <button className='bg-white border shadow-md py-1 rounded-md flex-center gap-1.5'>
+                    <img src={Plus} alt='book_icon' className='w-4' />
+                    리스트에 추가하기
+                  </button>
+                  <button className='bg-white border py-1 shadow-md rounded-md flex-center gap-1.5'>
+                    <img src={Cart} alt='book_icon' className='w-[17px]' />
+                    카트에 담기
+                  </button>
                 </ul>
               </div>
 
@@ -49,11 +77,12 @@ const Detail = () => {
                   <div className="flex_col w-full">
                     <div className="flex items-center gap-4">
                       <h3 className='text-xl'>Story Title</h3>
-                      <span className='text-xs border border-blue-600 text-blue-600 px-3 py-0.5'>전체이용등급</span>
+                      <span className='text-xs border border-primary-yellow text-primary-yellow px-3 py-0.5'>전체이용등급</span>
                     </div>
-                    <p className='text-sm py-3 border-b border-white'>스토리에 대한 한줄 설명 작성. 스토리에 대한 한줄 설명 작성. </p>
-                    <ul className="flex gap-5 items-center text-sm border-b py-3 border-white">
-                      <li className='flex gap-2'><img src={Eye} alt='eye' className='w-5' /> 35,437</li>
+                    <p className='text-sm py-3 border-b border-primary-yellow'>스토리에 대한 한줄 설명 작성. 스토리에 대한 한줄 설명 작성. </p>
+                    <ul className="flex gap-5 items-center text-sm border-b py-3 border-primary-yellow">
+                      <li className='flex gap-2 text-primary-yellow'>
+                        <img src={Eye} alt='eye' className='w-5' /> 35,437</li>
                       <li className='flex'>
                         <img src={StarFull} alt='star' className='w-5' />
                         <img src={StarFull} alt='star' className='w-5' />
@@ -61,8 +90,8 @@ const Detail = () => {
                         <img src={StarFull} alt='star' className='w-5' />
                         <img src={StarHalf} alt='star' className='w-5' />
                       </li>
-                      <p className='border-r border-white pr-4'>전체이용가</p>
-                      <p className='border-r border-white pr-4'>지은이 이름</p>
+                      <p className='border-r border-primary-yellow pr-4'>전체이용가</p>
+                      <p className='border-r border-primary-yellow pr-4'>지은이 이름</p>
                       <p>2024</p>
                     </ul>
 
@@ -106,19 +135,22 @@ const Detail = () => {
                   </div>
 
                   {/* gallery */}
-                  <div className="flex_col gap-3 pb-4">
+                  <div className="flex_col gap-3 pb-4 max-w-[200px]">
                     <h1 className='text-xl'>갤러리</h1>
-                    <img src="" alt="갤러리01" className='w-[180px] h-[100px] border' />
-                    <ul className="flex gap-3">
-                      <img src='' alt='갤02' className='w-1/3 border h-[55px]' />
-                      <img src='' alt='갤03' className='w-1/3 border h-[55px]' />
-                      <img src='' alt='더보기' className='w-1/3 bg-primary-darkred border h-[55px]' />
+                    <img src={Bg} alt="갤러리01" className='min-w-[180px] w-full object-cover h-[100px] bg-black border' />
+                    <ul className=" grid grid-cols-3 gap-3">
+                      <img src={Bg} alt='갤02' className='w-full object-cover bg-black border h-[55px]' />
+                      <img src={Bg} alt='갤03' className='w-full object-cover bg-black border h-[55px]' />
+                      <div className='w-full bg-white border h-[55px] text-xs flex-center'>
+                        <img src={Plus} alt='plus' className='w-3 mr-0.5' />
+                        더보기
+                      </div>
                     </ul>
                   </div>
                 </div>
 
                 {/* storyline */}
-                <div className="flex_col gap-4 px-4 border-t pt-4 border-white">
+                <div className="flex_col gap-4 px-4 border-t pt-4 border-primary-yellow">
                   <h3 className='text-xl'>줄거리</h3>
                   <p>
                   우리는 Sparkle Tale에서 모든 제품을 제작할 때, 사랑과 행복을 중요시합니다. 
@@ -134,7 +166,7 @@ const Detail = () => {
 
           {/* 추천 동화 */}
           <div className="flex_col gap-6">
-            <div className="flex items-center gap-2 border-y border-white p-3 ">
+            <div className="flex items-center gap-2 border-y border-primary-yellow p-3 ">
               <img src={Book} alt='book' className='w-9' />
               <h3 className='font-semibold text-lg'>유사한 다른 동화</h3>
             </div>
