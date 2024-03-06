@@ -41,6 +41,10 @@ input[type=number] {
   text-shadow: 1px 1px 4px #9A2D2F;
 }
 
+.lg_logo_shadow{
+  text-shadow: -2px 0 #aaa, 0 2px #aaa, 2px 0 #aaa, 0 -2px #aaa;
+}
+
 .logo_shadow_menu{
   text-shadow: -0.7px -0.7px 0 #9A2D2F, 0.7px -0.7px 0 #9A2D2F, -0.7px 0.7px 0 #9A2D2F, 0.7px 0.7px 0 #9A2D2F;
 }
