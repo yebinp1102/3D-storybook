@@ -37,11 +37,11 @@ const Navbar = ({toggleOn, setToggleOn} : Props) => {
           onClick={() => navigate('/')}
         >
           <img
-            className='w-12'
+            className='w-14'
             src={logoIcon}
             alt='logo'
           />
-          <span className='relative -left-3 z-100 -bottom-2 text-3xl font-black text-primary-yellow logo_shadow_menu tracking-wide'>PARKLE</span>
+          <span className='relative -left-[18px] z-100 -bottom-2 text-[37px] font-black text-primary-main tracking-wide'>PARKLE</span>
         </div>
         <ul className='flex items-center gap-6 text-slate-600 text-[0.95rem] font-semibold h-full'>
           <li className='border-r border-slate-300 pr-6'>홈페이지</li>
