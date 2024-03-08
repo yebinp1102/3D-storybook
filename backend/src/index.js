@@ -2,6 +2,7 @@ const express = require('express');
 const cors = require('cors');
 const mongoose = require('mongoose');
 const dotenv = require('dotenv');
+const userRouter = require('./routes/users');
 const PORT = 3000;
 
 dotenv.config();
@@ -21,13 +22,15 @@ app.get('*', (req, res, next) => {
   setImmediate(() => next (new Error('woops')))
 })
 
+app.use('/users', userRouter);
+
+app.post('/', (req, res) => {
+  res.send('Hello world');
+})
+
 app.use((err, req, res, next) => {
   res.status(err.status || 500);
   res.send(err.message || 'Error from server');
-})
-
-app.get('/', (req, res) => {
-  res.send('Hello world');
 })
 
 

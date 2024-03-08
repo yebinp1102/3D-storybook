@@ -1,4 +1,10 @@
 import { Route, Routes } from "react-router-dom";
+
+// packages
+import { ToastContainer } from "react-toastify";
+import 'react-toastify/dist/ReactToastify.css'
+
+// Components
 import ExploreProjects from "./pages/ExploreProjects";
 import Home from "./pages/Home";
 import AuthLayout from "./pages/AuthLayout";
@@ -11,6 +17,12 @@ import Detail from "./pages/Detail";
 const App = () => {
   return (
     <div className="w-screen">
+      <ToastContainer 
+        position="bottom-right"
+        theme="light"
+        pauseOnHover
+        autoClose={1500}
+      />
       <Routes>
         <Route element={<AuthLayout />}>
           <Route path="/login" element={<AuthForm type={"Login"} />} />

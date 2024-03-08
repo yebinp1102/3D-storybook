@@ -25,7 +25,7 @@ const Navbar = ({toggleOn, setToggleOn} : Props) => {
         </ul>
         <ul className="flex gap-5">
           <img src={searchIcon} alt='user_icon' className='w-5 mr-1.5 cursor-pointer' />
-          <img src={userIcon} alt='user_icon' className='w-6 cursor-pointer' />
+          <img src={userIcon} alt='user_icon' className='w-6 cursor-pointer' onClick={() => navigate('/login')} />
           <img src={cartIcon} alt='user_icon' onClick={() => navigate('/cart')} className='w-6 cursor-pointer' />
         </ul>
       </div>
@@ -45,7 +45,7 @@ const Navbar = ({toggleOn, setToggleOn} : Props) => {
         </div>
         <ul className='flex items-center gap-6 text-slate-600 text-[0.95rem] font-semibold h-full'>
           <li className='border-r border-slate-300 pr-6'>홈페이지</li>
-          <li className='border-r border-slate-300 pr-6'>둘러보기</li>
+          <li className='border-r border-slate-300 pr-6' onClick={() => navigate('/explore_projects')}>둘러보기</li>
           <li className='border-r border-slate-300 pr-6'>회사소개</li>
           <li>연락</li>
         </ul>
