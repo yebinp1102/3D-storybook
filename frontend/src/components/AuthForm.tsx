@@ -15,8 +15,9 @@ interface Props {
 type FormValues = {
   name: string,
   email: string,
-  password: string
-  confirmPwd?: string
+  password: string,
+  confirmPwd?: string,
+  loginPassword: string
 }
 
 const AuthForm = ({type}: Props) => {
@@ -46,7 +47,7 @@ const AuthForm = ({type}: Props) => {
   },[watch('password', watch('confirmPwd'))])
 
 
-  const onSubmit:SubmitHandler<FormValues> = async ({name, email, password}) => {
+  const handleRegister:SubmitHandler<FormValues> = async ({name, email, password}) => {
     const body = {
       name,
       email,
@@ -55,7 +56,7 @@ const AuthForm = ({type}: Props) => {
 
     try{
       const res = await axiosInstance.post('/users/register', body);
-      if(res.status === 200) toast.info('회원가입에 성공했습니다.')
+      if(res.status === 200) toast.info('회원가입에 성공했습니다.');
       navigate('/login');
     }catch(err){
       toast.info('회원가입에 실패했습니다.');
@@ -63,6 +64,30 @@ const AuthForm = ({type}: Props) => {
       reset();
     }
   }
+
+  const handleLogin:SubmitHandler<FormValues> = async ({email, loginPassword}) => {
+    const body = {
+      email,
+      password: loginPassword
+    }
+
+    try{
+      const res = await axiosInstance.post('/users/login', body);
+      if(res.status === 200) {
+        console.log(res.data);
+        localStorage.setItem('accessToken', res.data.accessToken);
+        toast.info('로그인에 성공했습니다.');
+      }
+      // navigate('/');
+    }catch(err){
+      console.log(err);
+      toast.info('로그인에 실패했습니다. 다시 시도해주세요.')
+    }finally{
+      reset();
+    }
+
+  }
+
 
   return (
     <div className="px-12">
@@ -79,7 +104,7 @@ const AuthForm = ({type}: Props) => {
       <p className="text-gray-500 mb-20 mt-4">
         스파클 테일에 오신 것을 환영 합니다. 스파클 테일의 회원이 되시면 다양한 경험과 혜택을 누릴 수 있습니다. 지금 { type === "Register" ? "회원가입": "로그인"} 하세요!
       </p>
-      <form className="flex flex-col gap-10" onSubmit={handleSubmit(onSubmit)}>
+      <form className="flex flex-col gap-10" onSubmit={type === "Register" ? handleSubmit(handleRegister) : handleSubmit(handleLogin)}>
         {/* Name */}
         {type === "Register" && 
           <div className="flex_col">
@@ -123,14 +148,24 @@ const AuthForm = ({type}: Props) => {
             <div className='w-12 h-12 bg-primary-main relative rounded-l-sm'>
               <img src={keyIcon} alt='user_icon' className='w-[2rem] absolute left-2 top-2' />
             </div>
-            <input 
-              type='password'
-              placeholder="비밀번호(대소문자, 숫자, 특수 문자를 하나 이상 포함하는 8자리 이상)" 
-              className="py-3 px-3 flex-1 placeholder:text-sm" 
-              {...register("password", {pattern: regExgPwd})}
-            />
+            {type === "Register" ? (
+              <input 
+                type='password'
+                placeholder='비밀번호(대소문자, 숫자, 특수 문자를 하나 이상 포함하는 8자리 이상)'
+                className="py-3 px-3 flex-1 placeholder:text-sm" 
+                {...register("password", {pattern: regExgPwd})}
+              />
+            ): (
+              <input 
+                type='password'
+                placeholder='비밀번호'
+                className="py-3 px-3 flex-1 placeholder:text-sm" 
+                {...register("loginPassword")}
+              />
+            )}
+
           </div>
-          {errors.password && (
+          {errors.password && type === "Register" && (
             <div className='text-red-500'>* 비밀번호는 대소문자, 숫자, 특수문자가 각각 1개 이상 포함하는 최소 8자리 이상으로 입력해주세요.</div>
           )}
         </div>
@@ -174,7 +209,7 @@ const AuthForm = ({type}: Props) => {
 
         <button 
           type='submit' 
-          disabled={!isValid} 
+          disabled={type === "Register" && !isValid} 
           className='rounded-sm w-full py-2 text-white bg-gradient-to-r to-primary-main from-blue-300 font-bold tracking-wide text-lg'
         >
           {type === "Register" ? "회원가입" : "로그인"}

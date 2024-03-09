@@ -55,6 +55,16 @@ userSchema.pre('save', async function(next){
   next();
 })
 
+// 
+userSchema.methods.comparePassword = async function(plainPassword){
+  // this는 DB에 저장된 유저 정보를 참조
+  let user = this; 
+
+  // compare 메서드는 불리언 타입을 반환
+  const match = await bcrypt.compare(plainPassword, user.password);
+  return match
+}
+
 const User = mongoose.model("User", userSchema);
 
 module.exports = User;
