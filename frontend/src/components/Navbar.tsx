@@ -1,10 +1,8 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, NavLink } from 'react-router-dom'
 import logoIcon from '../../public/images/logo.svg'
 import arrowUp from '../../public/images/arrowUp.svg'
 import arrowDown from '../../public/images/arrowDown.svg'
-import userIcon from '../../public/images/userIcon.svg'
-import cartIcon from '../../public/images/cart.svg'
-import searchIcon from '../../public/images/search.svg'
+import { INITIAL_USER, useUserContext } from '../context/AuthContext'
 
 type Props = {
   toggleOn: boolean;
@@ -13,22 +11,18 @@ type Props = {
 
 const Navbar = ({toggleOn, setToggleOn} : Props) => {
   const navigate = useNavigate();
+  const {user, setUser, setIsAuthenticated} = useUserContext();
+  const isActiveStyle = `bg-primary-main text-white rounded-xl py-2 px-6 `
+
+  const handleLogout = () => {
+    setUser(INITIAL_USER);
+    setIsAuthenticated(false);
+    localStorage.removeItem('accessToken');
+    navigate('/login');
+  }
 
   return (
-    <div className={`w-full z-[100] bg-white transition-all fixed top-0 left-0 ${!toggleOn && ' -translate-y-[121px]'}`}>
-      {/* top nav */}
-      <div className="max-w-7xl mx-auto flex justify-between items-center p-2 px-8 border-b border-slate-300">
-        <ul className="flex gap-7 text-sm text-slate-500">
-          <li>사용법</li>
-          <li>수상경력</li>
-          <li>후기</li>
-        </ul>
-        <ul className="flex gap-5">
-          <img src={searchIcon} alt='user_icon' className='w-5 mr-1.5 cursor-pointer' />
-          <img src={userIcon} alt='user_icon' className='w-6 cursor-pointer' onClick={() => navigate('/login')} />
-          <img src={cartIcon} alt='user_icon' onClick={() => navigate('/cart')} className='w-6 cursor-pointer' />
-        </ul>
-      </div>
+    <div className={`w-full z-[100] bg-white transition-all fixed top-0 left-0 ${!toggleOn && ' -translate-y-[80px]'}`}>
       {/* bottom nav */}
       <div className="max-w-7xl h-20 mx-auto flex items-center justify-between px-8">
         {/* logo */}
@@ -44,10 +38,25 @@ const Navbar = ({toggleOn, setToggleOn} : Props) => {
           <span className='relative -left-[18px] z-100 -bottom-2 text-[37px] font-black text-primary-main tracking-wide'>PARKLE</span>
         </div>
         <ul className='flex items-center gap-6 text-slate-600 text-[0.95rem] font-semibold h-full'>
-          <li className='border-r border-slate-300 pr-6'>홈페이지</li>
-          <li className='border-r border-slate-300 pr-6' onClick={() => navigate('/explore_projects')}>둘러보기</li>
-          <li className='border-r border-slate-300 pr-6'>회사소개</li>
-          <li>연락</li>
+          <NavLink 
+            to="/"
+            className={ ({isActive}) => isActive ? isActiveStyle : 'border-r border-slate-300 pr-6'}
+          >
+            홈페이지
+          </NavLink>
+          <NavLink 
+            to="/explore_projects"
+            className={ ({isActive}) => isActive ? isActiveStyle : 'border-r border-slate-300 pr-6'}
+          >
+            둘러보기
+          </NavLink>
+          <NavLink 
+            to="/introduce"
+            className={ ({isActive}) => isActive ? isActiveStyle : 'border-r border-slate-300 pr-6'}
+          >
+            회사소개
+          </NavLink>
+          {user.id && <li onClick={handleLogout}>로그아웃</li>}
         </ul>
       </div>
       <div 

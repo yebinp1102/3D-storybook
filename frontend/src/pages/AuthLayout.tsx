@@ -1,7 +1,16 @@
-import { Outlet } from "react-router-dom"
+import { Outlet, useNavigate } from "react-router-dom"
 import BgImg from '../../public/images/Royal_Heath.png'
+import { useUserContext } from "../context/AuthContext"
+import { useEffect } from "react";
 
 const AuthLayout = () => {
+  const {user} = useUserContext();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    if(user.id) navigate('/');
+  },[])
+
   return (
     <div className="flex w-screen h-screen relative">
       <img src={BgImg} className="w-full h-full object-cover absolute -z-10" />

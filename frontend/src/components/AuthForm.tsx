@@ -26,6 +26,7 @@ const AuthForm = ({type}: Props) => {
   const {mutateAsync: createUserAccount} = useCreateUserAccountMutation();
   const {mutateAsync: signInAccount} = useSignInAccount();
   const {checkAuthUser} = useUserContext();
+
   // 정규표현식 
   // 이름은 한글, 영어, 공백한 허용
   const regExpName = /[^?a-zA-Z0-9/]/
