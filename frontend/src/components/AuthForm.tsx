@@ -5,8 +5,9 @@ import {useForm, SubmitHandler} from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom'
 import logo from '../../public/images/logo.svg';
 import { useEffect } from 'react';
-import axiosInstance from '../utils/axios';
 import { toast } from 'react-toastify';
+import { useCreateUserAccountMutation, useSignInAccount } from '../lib/queriesAndMutations';
+import { useUserContext } from '../context/AuthContext';
 
 interface Props {
   type: "Register" | "Login"
@@ -22,7 +23,9 @@ type FormValues = {
 
 const AuthForm = ({type}: Props) => {
   const navigate = useNavigate();
-
+  const {mutateAsync: createUserAccount} = useCreateUserAccountMutation();
+  const {mutateAsync: signInAccount} = useSignInAccount();
+  const {checkAuthUser} = useUserContext();
   // 정규표현식 
   // 이름은 한글, 영어, 공백한 허용
   const regExpName = /[^?a-zA-Z0-9/]/
@@ -54,14 +57,13 @@ const AuthForm = ({type}: Props) => {
       password
     }
 
-    try{
-      const res = await axiosInstance.post('/users/register', body);
-      if(res.status === 200) toast.info('회원가입에 성공했습니다.');
-      navigate('/login');
-    }catch(err){
-      toast.info('회원가입에 실패했습니다.');
-    }finally{
+    const registerResponse = await createUserAccount(body);
+    if(registerResponse !== 200){
+      return toast.info('이미 사용중인 이메일 입니다. 다른 이메일을 입력해주세요.');
+    }else{
+      toast.info('회원가입에 성공했습니다. 로그인 해주세요.');
       reset();
+      navigate('/login');
     }
   }
 
@@ -70,22 +72,17 @@ const AuthForm = ({type}: Props) => {
       email,
       password: loginPassword
     }
+    const loginResponse = await signInAccount(body);
+    if(loginResponse !== 200) return toast.info('로그인에 실패했습니다. 다시 시도해주세요.');
 
-    try{
-      const res = await axiosInstance.post('/users/login', body);
-      if(res.status === 200) {
-        console.log(res.data);
-        localStorage.setItem('accessToken', res.data.accessToken);
-        toast.info('로그인에 성공했습니다.');
-      }
-      // navigate('/');
-    }catch(err){
-      console.log(err);
-      toast.info('로그인에 실패했습니다. 다시 시도해주세요.')
-    }finally{
+    const isLoggedIn = await checkAuthUser();
+    if(isLoggedIn){
+      toast.info('로그인에 성공했습니다.');
       reset();
+      navigate("/");
+    }else{
+      toast.info('올바르지 않은 토큰입니다. 다시 로그인해주세요.');
     }
-
   }
 
 

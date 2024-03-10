@@ -17,16 +17,13 @@ mongoose.connect(process.env.MONGO_URI)
   .then(() => console.log('Mongo DB is connected.'))
   .catch((err) => console.error(err));
 
-  // 비동기 요청으로 발생한 에러 catch 하고 서버가 다운 되지 않게 후처리
-app.get('*', (req, res, next) => {
-  setImmediate(() => next (new Error('woops')))
+app.post('/', (req, res) => {
+  console.log(req.body);
+  res.json(req.body);
 })
 
 app.use('/users', userRouter);
 
-app.post('/', (req, res) => {
-  res.send('Hello world');
-})
 
 app.use((err, req, res, next) => {
   res.status(err.status || 500);

@@ -2,11 +2,23 @@ const express = require('express');
 const User = require('../models/User');
 const router = express.Router();
 const jwt = require('jsonwebtoken');
+const auth = require('../middleware/auth');
+
+router.get('/auth', auth, async (req, res, next) => {
+  return res.json({
+    id: req.user._id,
+    name: req.user.name,
+    email: req.user.email,
+    isAdmin: req.user.isAdmin,
+    cart: req.user.cart,
+    order: req.user.order,
+  })
+})
 
 // 회원가입
-router.post('/register', async (req, res, next) => {
+router.post('/register', async (req, res) => {
   try{
-    const user = new User(req.body)
+    const user = new User(req.body);
     await user.save();
     return res.sendStatus(200);
   }catch(err){
@@ -38,7 +50,6 @@ router.post('/login', async(req, res) => {
     delete userData.password;
 
     return res.status(200).json({user: userData, accessToken})
-
   }catch(err){
     console.log(err);
     return res.status(500).send(err);

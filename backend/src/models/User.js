@@ -25,20 +25,8 @@ const userSchema = mongoose.Schema({
     default: []
   },
   order: {
-    type: [String],
+    type: Array,
     default: []
-  },
-  address: {
-    type: {
-      address1: String,
-      address2: String,
-      address3: String
-    },
-    default: {
-      address1: '',
-      address2: '',
-      address3: ''
-    },
   }
 })
 
