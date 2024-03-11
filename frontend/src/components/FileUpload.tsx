@@ -14,10 +14,8 @@ const FileUpload = ({onImageChange, images}) => {
     try{
       const res = await axiosInstance.post('/template/image', formData, config);
       console.log(res);
-      if(res.status === 200){
-        toast.info('성공적으로 업로드 했습니다.');
-        onImageChange([...images, res.data.fileName]);
-      }else throw Error('업로드 실패');
+      if(res.status === 200) onImageChange([...images, res.data.fileName]);
+      else throw Error('업로드 실패');
     }catch(err){
       return toast.info('업로드에 실패했습니다. 다시 시도해주세요.')
     }
@@ -29,7 +27,7 @@ const FileUpload = ({onImageChange, images}) => {
     newImages.splice(currentIndex, 1);
     onImageChange(newImages);
   }
-
+  console.log('images:', images);
   return (
     <div className="flex_col gap-4">
       <Dropzone onDrop={handleDrop}>

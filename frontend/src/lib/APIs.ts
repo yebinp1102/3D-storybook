@@ -43,3 +43,12 @@ export const uploadTemplate = async (template: Template) => {
     return err;
   }
 }
+
+export const getAllTemplates = async () => {
+  try{
+    const {data} = await axiosInstance.get('/template/');
+    return data;
+  }catch(err){
+    return err;
+  }
+}

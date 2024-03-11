@@ -47,3 +47,12 @@ export type Template = {
   price: number;
   images: any;
 }
+
+export type TemplateItem = {
+  _id: string;
+  title: string;
+  description: string;
+  price: number;
+  views: number;
+  images: [string];
+}

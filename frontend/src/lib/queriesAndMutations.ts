@@ -1,9 +1,10 @@
 import {
   useQuery, // use for fetch data
-  useMutation, // use for modifiying data
+  useMutation,
+  useQueryClient, // use for modifiying data
 } from '@tanstack/react-query'
 import { NewUser, Template } from '../types'
-import { createUserAccount, signInAccount, uploadTemplate } from './APIs'
+import { createUserAccount, getAllTemplates, signInAccount, uploadTemplate } from './APIs'
 
 // react-query를 사용하는 이유 : fetching, mutation 데이터를 단순화하기 위해서 
 
@@ -24,7 +25,20 @@ export const useSignInAccount = () => {
 
 // template upload (create)
 export const useUploadNewTemplate = () => {
+  const queryClient = useQueryClient();
   return useMutation({
-    mutationFn: (template: Template) => uploadTemplate(template)
+    mutationFn: (template: Template) => uploadTemplate(template),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['GET_ALL_TEMPLATES']
+      })
+    }
+  })
+}
+
+export const useGetAllTemplates = () => {
+  return useQuery({
+    queryFn: getAllTemplates,
+    queryKey: ['GET_ALL_TEMPLATES']
   })
 }

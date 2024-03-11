@@ -35,4 +35,16 @@ router.post('/image', async (req, res) => {
   }
 })
 
+router.get('/', async (req, res) => {
+  // populate: 해당 데이터의 모든 정보를 가져옴
+
+  try{
+    const templates = await Template.find()
+    
+    return res.status(200).json(templates)
+  }catch(err){
+    console.log(err);
+  }
+})
+
 module.exports = router;
