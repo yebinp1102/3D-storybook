@@ -1,4 +1,4 @@
-import { NewUser } from "../types";
+import { NewUser, Template } from "../types";
 import axiosInstance from "../utils/axios";
 
 
@@ -28,8 +28,17 @@ export const signInAccount = async(user: {email:string, password: string}) => {
 // token을 통해 유저 정보 get
 export const getCurrentUser = async () => {
   try{
-    const res = await axiosInstance.get('/users/auth');
-    return res.data
+    const {data} = await axiosInstance.get('/users/auth');
+    return data
+  }catch(err){
+    return err;
+  }
+}
+
+export const uploadTemplate = async (template: Template) => {
+  try{
+    const {data} = await axiosInstance.post('/template/create', template);
+    return data;
   }catch(err){
     return err;
   }

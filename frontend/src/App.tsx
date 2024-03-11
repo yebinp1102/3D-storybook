@@ -13,6 +13,8 @@ import RootLayout from "./pages/RootLayout";
 import Cart from "./pages/Cart";
 import Order from "./pages/Order";
 import Detail from "./pages/Detail";
+import Explore from "./pages/Explore";
+import UploadTemplate from "./pages/UploadTemplate";
 
 const App = () => {
   return (
@@ -31,11 +33,13 @@ const App = () => {
         
         <Route element={<RootLayout />}>
           <Route path="/" element={<Home />} />
+          <Route path="/explore" element={<Explore />} />
           <Route path="/cart" element={<Cart />} />
           <Route path="/order" element={<Order />} />
           <Route path="/detail" element={<Detail />} />
+          <Route path="/upload_template" element={<UploadTemplate />} />
+          <Route path="/explore_projects" element={<ExploreProjects />} />
         </Route>
-        <Route path="/explore_projects" element={<ExploreProjects />} />
       </Routes>
     </div>
   )

@@ -5,7 +5,7 @@ import FaceBook from '../../public/images/facebook.svg';
 
 const Footer = () => {
   return (
-    <div className="relative bg-primary-skyblue text-blue-600 text-sm z-50">
+    <div className="relative bg-white border-t-primary-main border text-emerald-500 text-sm z-50">
       <div className="max-w-6xl w-full mx-auto flex_col items-center py-4">
         <div className="flex-between max-w-5xl py-8 w-full">
           {/* company */}
@@ -14,7 +14,7 @@ const Footer = () => {
             <div className="flex">
               <img src={Logo} alt='logo' className='w-9 mb-4' />
               <span 
-                className='relative -left-2.5 z-100 -bottom-[7px] text-2xl font-black text-primary-yellow sm_logo_shadow_menu tracking-wide'>
+                className='relative -left-3 z-100 -bottom-[7px] text-2xl font-black text-primary-main'>
                   PARKLE TALE
               </span>
             </div>
@@ -63,7 +63,7 @@ const Footer = () => {
           </div>
 
         </div>
-        <p className="border-t max-w-5xl w-full border-blue-600 py-4">copyright &copy; by Designart All Right Reserved</p>
+        <p className="border-t max-w-5xl w-full border-primary-main py-4">copyright &copy; by Designart All Right Reserved</p>
       </div>
     </div>
   )

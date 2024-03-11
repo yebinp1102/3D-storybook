@@ -13,4 +13,14 @@ axiosInstance.interceptors.request.use(function (config) {
   return Promise.reject(err);
 })
 
+// jwt 만료되면 자동 로그아웃
+axiosInstance.interceptors.response.use(function (response) {
+  return response;
+}, function (err){
+  if(err.response.data === 'jwt expired'){
+    window.location.reload();
+  }
+  return Promise.reject(err);
+})
+
 export default axiosInstance;

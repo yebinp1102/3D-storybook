@@ -40,3 +40,10 @@ export type OrderInfo = {
   phone: string;
   email: string;
 }
+
+export type Template = {
+  title: string;
+  description: string;
+  price: number;
+  images: any;
+}

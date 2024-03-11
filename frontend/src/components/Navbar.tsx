@@ -12,7 +12,7 @@ type Props = {
 const Navbar = ({toggleOn, setToggleOn} : Props) => {
   const navigate = useNavigate();
   const {user, setUser, setIsAuthenticated} = useUserContext();
-  const isActiveStyle = `bg-primary-main text-white rounded-xl py-2 px-6 `
+  const isActiveStyle = `bg-primary-main text-white rounded-xl py-2.5 px-6 `
 
   const handleLogout = () => {
     setUser(INITIAL_USER);
@@ -37,26 +37,26 @@ const Navbar = ({toggleOn, setToggleOn} : Props) => {
           />
           <span className='relative -left-[18px] z-100 -bottom-2 text-[37px] font-black text-primary-main tracking-wide'>PARKLE</span>
         </div>
-        <ul className='flex items-center gap-6 text-slate-600 text-[0.95rem] font-semibold h-full'>
+        <ul className='flex items-center gap-2 text-slate-600 text-[0.95rem] font-semibold h-full'>
           <NavLink 
             to="/"
-            className={ ({isActive}) => isActive ? isActiveStyle : 'border-r border-slate-300 pr-6'}
+            className={ ({isActive}) => isActive ? isActiveStyle : 'py-2 px-6'}
           >
             홈페이지
           </NavLink>
           <NavLink 
-            to="/explore_projects"
-            className={ ({isActive}) => isActive ? isActiveStyle : 'border-r border-slate-300 pr-6'}
+            to="/explore"
+            className={ ({isActive}) => isActive ? isActiveStyle : 'py-2 px-6'}
           >
             둘러보기
           </NavLink>
           <NavLink 
-            to="/introduce"
-            className={ ({isActive}) => isActive ? isActiveStyle : 'border-r border-slate-300 pr-6'}
+            to="/cart"
+            className={ ({isActive}) => isActive ? isActiveStyle : 'py-2 px-6'}
           >
-            회사소개
+            장바구니
           </NavLink>
-          {user.id && <li onClick={handleLogout}>로그아웃</li>}
+          {user.id && <li onClick={handleLogout} className='px-6 py-2'>로그아웃</li>}
         </ul>
       </div>
       <div 
