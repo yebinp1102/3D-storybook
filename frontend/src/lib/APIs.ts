@@ -52,3 +52,12 @@ export const getAllTemplates = async () => {
     return err;
   }
 }
+
+export const getTemplate = async (id: string) => {
+  try{
+    const {data} = await axiosInstance.get(`/template/${id}?type=single`);
+    return data;
+  }catch(err){
+    return err; 
+  }
+}

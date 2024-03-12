@@ -1,3 +1,4 @@
+import { useNavigate } from 'react-router-dom';
 import { TemplateItem } from '../types';
 
 type Props = {
@@ -7,10 +8,12 @@ type Props = {
 }
 
 const TemplateList = ({temp, handleHover, idx} : Props) => {
+  const navigate = useNavigate();
   return (
     <div 
       onMouseOver={() => handleHover(idx)}
-      className="h-[250px] relative w-full rounded-lg overflow-hidden transition-all shadow-lg border-white border-2 bg-black/50 hover:border-primary-main hover:scale-105"
+      className="h-[250px] cursor-pointer relative w-full rounded-lg overflow-hidden transition-all shadow-lg border-white border-2 bg-black/50 hover:border-primary-main hover:scale-105"
+      onClick={() => navigate(`/explore/detail/${temp._id}`)}
     >
       {temp.images[0] ? (
         <img 

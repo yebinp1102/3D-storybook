@@ -12,7 +12,7 @@ export default {
         'primary-yellow': '#FFEB4D',
         'primary-darkred': '#9A2D2F',
         'primary-emrald': '#34D399',
-        'primary-main' : "#34D399"
+        'primary-main' : "#34D399",
       }
     },
   },

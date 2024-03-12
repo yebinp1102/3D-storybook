@@ -36,12 +36,20 @@ router.post('/image', async (req, res) => {
 })
 
 router.get('/', async (req, res) => {
-  // populate: 해당 데이터의 모든 정보를 가져옴
-
   try{
     const templates = await Template.find()
-    
     return res.status(200).json(templates)
+  }catch(err){
+    console.log(err);
+  }
+})
+
+router.get('/:id', async (req, res) => {
+  const type = req.query.type;
+  const templateId = req.params.id;
+  try{
+    const template = await Template.find({ _id: {$in: templateId} });
+    return res.status(200).send(template[0]);
   }catch(err){
     console.log(err);
   }
