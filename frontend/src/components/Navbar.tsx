@@ -12,7 +12,7 @@ type Props = {
 const Navbar = ({toggleOn, setToggleOn} : Props) => {
   const navigate = useNavigate();
   const {user, setUser, setIsAuthenticated} = useUserContext();
-  const isActiveStyle = `bg-primary-main text-white rounded-xl py-2.5 px-6 `
+  const isActiveStyle = `relative bg-primary-main text-white rounded-xl py-2.5 px-6 `
 
   const handleLogout = () => {
     setUser(INITIAL_USER);
@@ -52,9 +52,10 @@ const Navbar = ({toggleOn, setToggleOn} : Props) => {
           </NavLink>
           <NavLink 
             to="/cart"
-            className={ ({isActive}) => isActive ? isActiveStyle : 'py-2 px-6'}
+            className={ ({isActive}) => isActive ? isActiveStyle : 'relative py-2 px-6'}
           >
-            장바구니
+            장바구니 
+            <span className='absolute bg-blue-500 text-white top-1 flex-center -right-2 border border-white h-7 w-7 rounded-full'>{`${user.cart.length}`}</span>
           </NavLink>
           {user.id && <li onClick={handleLogout} className='px-6 py-2'>로그아웃</li>}
         </ul>

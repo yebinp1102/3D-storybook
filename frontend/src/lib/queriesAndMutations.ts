@@ -4,7 +4,7 @@ import {
   useQueryClient, // use for modifiying data
 } from '@tanstack/react-query'
 import { NewUser, Template } from '../types'
-import { createUserAccount, getAllTemplates, getTemplate, signInAccount, uploadTemplate } from './APIs'
+import { addToCart, createUserAccount, getAllTemplates, getTemplate, signInAccount, uploadTemplate } from './APIs'
 
 // react-query를 사용하는 이유 : fetching, mutation 데이터를 단순화하기 위해서 
 
@@ -49,5 +49,17 @@ export const useGetTemplate = (id: string) => {
   return useQuery({
     queryFn: () => getTemplate(id),
     queryKey: ['GET_TEMPLATE', id]
+  })
+}
+
+export const useAddToCart = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => addToCart(id),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['ADD_TO_CART']
+      })
+    }
   })
 }

@@ -7,16 +7,31 @@ import PlusCircle from '../../public/images/plusCircle.svg';
 import Award from '../../public/images/award.svg'
 import Plus from '../../public/images/plus.svg';
 import Cart from '../../public/images/cart.svg';
-import { useGetTemplate } from '../lib/queriesAndMutations';
+import { useAddToCart, useGetTemplate } from '../lib/queriesAndMutations';
 import { useNavigate, useParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { TemplateItem } from '../types';
+import { toast } from 'react-toastify';
+import { useUserContext } from '../context/AuthContext';
 
 const Detail = () => {
   const navigate = useNavigate();
   const {id} = useParams();
   const [template, setTemplate] = useState<TemplateItem>(null!);
   const {data: fetchedtemplate, isPending: isGettingTemplate} = useGetTemplate(id!);
+  const {mutateAsync: addToCart} = useAddToCart();
+  const {checkAuthUser} = useUserContext();
+
+  const handleAddToCart = async (id: string) => {
+    const responseStatus = await addToCart(id);
+    if(responseStatus !== 200){
+      toast.info(responseStatus);
+    }else{
+      toast.info('장바구니에 담겼습니다.');
+      checkAuthUser();
+    }
+    
+  }
 
   useEffect(() => {
     setTemplate(fetchedtemplate);
@@ -68,14 +83,17 @@ const Detail = () => {
                 <img 
                   src={`${import.meta.env.VITE_SERVER_URL}/${template?.images}`}
                   alt='동화_이미지'
-                  className='border w-[530px] h-[340px] relative object-cover'
+                  className='border max-w-[280px] w-full h-[340px] relative object-cover'
                 />
                 <ul className='flex_col gap-4'>
                   <button onClick={() => navigate('/explore_projects')} className='bg-primary-main border flex-center gap-1.5 text-slate-700 shadow-md py-1 rounded-md'>
                     <img src={Book} alt='book_icon' className='w-6' />
                     지금 보기
                   </button>
-                  <button className='bg-white border py-1 shadow-md rounded-md flex-center gap-1.5'>
+                  <button 
+                    onClick={() => handleAddToCart(template._id)}
+                    className='bg-white border py-1 shadow-md rounded-md flex-center gap-1.5'
+                  >
                     <img src={Cart} alt='book_icon' className='w-[17px]' />
                     카트에 담기
                   </button>

@@ -61,3 +61,13 @@ export const getTemplate = async (id: string) => {
     return err; 
   }
 }
+
+export const addToCart = async (id: string) => {
+  try{
+    const res = await axiosInstance.post(`/users/addToCart`, {id});
+    if(res.status !== 200) throw Error;
+    return res.status;
+  }catch(err){
+    return err?.response.data.message;
+  }
+}

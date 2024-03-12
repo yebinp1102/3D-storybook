@@ -56,4 +56,35 @@ router.post('/login', async(req, res) => {
   }
 })
 
+router.post('/addToCart', auth, async(req, res) => {
+  const {id} = req.body;
+  try{
+    const userInfo = await User.findOne({_id: req.user._id});
+
+    // 장바구니에 이미 상품이 있는지 없는지 확인
+    let duplicate = false;
+    userInfo.cart.forEach(item => {
+      if(item.id == id) duplicate = true;
+
+    })
+
+    // 이미 장바구니에 상품이 있는 경우
+    if(duplicate) throw Error;
+
+    // 장바구니에 상품 담기
+    await User.findOneAndUpdate(
+      {_id: req.user._id},
+      {
+        $push: { cart: { id } }
+      },
+      {new: true}
+    )
+    
+
+    return res.sendStatus(200);
+  }catch(err){
+    return res.status(500).send({message: '이미 저장된 템플릿입니다.'});
+  }
+})
+
 module.exports = router;
