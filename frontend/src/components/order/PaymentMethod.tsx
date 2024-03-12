@@ -2,11 +2,11 @@ import { useState } from 'react';
 import CheckIcon from '../../../public/images/check.svg'
 import PlusIcon from '../../../public/images/plus.svg'
 import moneyIcon from '../../../public/images/money.svg';
-import moneyBlue from '../../../public/images/moneyBlue.svg';
+import moneyGreen from '../../../public/images/moneyGreen.svg';
 import creditIcon from '../../../public/images/creditCard.svg';
-import creditBlue from '../../../public/images/creditBlue.svg';
+import creditGreen from '../../../public/images/creditGreen.svg';
 import accountIcon from '../../../public/images/account.svg';
-import accountBlue from '../../../public/images/accountBlue.svg';
+import accountGreen from '../../../public/images/accountGreen.svg';
 
 type IconProps = {
   text:string;
@@ -23,7 +23,7 @@ type TitleProps = {
 
 const PayMethodIcon = ({text, icon, isActive = false}: IconProps) => {
   return (
-    <li className={`${isActive ? 'text-blue-600 border-blue-600' : 'border-slate-700 text-slate-700'} text-sm font-bold cursor-pointer flex flex-col items-center border-[1.5px] px-6 py-2 rounded-sm`}>
+    <li className={`${isActive ? 'text-primary-main border-primary-main' : 'border-slate-700 text-slate-700'} text-sm font-bold cursor-pointer flex flex-col items-center border-[1.5px] px-6 py-2 rounded-sm`}>
       <img src={icon} alt='credit_card_icon' className='w-8' />
       {text}
     </li>
@@ -33,14 +33,14 @@ const PayMethodIcon = ({text, icon, isActive = false}: IconProps) => {
 const PayMethodTitle = ({text, paymethod, setPaymethod, index}: TitleProps) => {
   return (
     <div className="flex gap-4 items-center cursor-pointer" onClick={() => setPaymethod(index)}>
-      <p className={`${paymethod === index ? 'bg-blue-600' : 'bg-slate-400'} p-1 rounded-full`}>
+      <p className={`${paymethod === index ? 'bg-primary-main' : 'bg-slate-400'} p-1 rounded-full`}>
         <img
           src={CheckIcon}
           alt='check_icon'
           className='w-6'
         />
       </p>
-      <p className={`${paymethod === index ? 'text-blue-600' : 'text-slate-400'} font-bold text-lg`}>{text}</p>
+      <p className={`${paymethod === index ? 'text-primary-main' : 'text-slate-400'} font-bold text-lg`}>{text}</p>
     </div>
   )
 }
@@ -77,19 +77,19 @@ const PaymentMethod = () => {
             <ul className='flex gap-6 mt-4 ml-12'>
               <div onClick={() => setDiffpaymethod(0)}>
                 {diffPaymethod === 0 ? 
-                  <PayMethodIcon text={'신용카드'} icon={creditBlue} isActive={true} />:
+                  <PayMethodIcon text={'신용카드'} icon={creditGreen} isActive={true} />:
                   <PayMethodIcon text={'신용카드'} icon={creditIcon} />
                 }
               </div>
               <div onClick={() => setDiffpaymethod(1)}>
                 {diffPaymethod === 1 ? 
-                  <PayMethodIcon text={'가상계좌'} icon={accountBlue} isActive={true} /> :
+                  <PayMethodIcon text={'가상계좌'} icon={accountGreen} isActive={true} /> :
                   <PayMethodIcon text={'가상계좌'} icon={accountIcon} />
                 }
               </div>
               <div onClick={() => setDiffpaymethod(2)}>
                 {diffPaymethod === 2 ? 
-                  <PayMethodIcon text={'계좌이체'} icon={moneyBlue} isActive={true} />:
+                  <PayMethodIcon text={'계좌이체'} icon={moneyGreen} isActive={true} />:
                   <PayMethodIcon text={'계좌이체'} icon={moneyIcon} />
                 }
               </div>

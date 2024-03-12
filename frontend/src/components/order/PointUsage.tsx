@@ -7,7 +7,7 @@ const PointUsage = () => {
         <div className="flex items-center">
           <span className=''>Tale 포인트</span>
           <button
-            className='bg-primary-skyblue ml-4 mr-2 text-blue-600 rounded-sm py-2 px-4 text-sm'
+            className='bg-primary-main ml-4 mr-2 text-white rounded-sm py-2 px-4 text-sm'
           >모두사용</button>
         </div>
 

@@ -56,7 +56,7 @@ export const getAllTemplates = async () => {
 export const getTemplate = async (id: string) => {
   try{
     const {data} = await axiosInstance.get(`/template/${id}?type=single`);
-    return data;
+    return data[0];
   }catch(err){
     return err; 
   }
@@ -69,5 +69,25 @@ export const addToCart = async (id: string) => {
     return res.status;
   }catch(err){
     return err?.response.data.message;
+  }
+}
+
+export const fetchCartItems = async (cartItemsId: string[]) => {
+  try{
+    const {data} = await axiosInstance.get(`/template/${cartItemsId}?type=array`);
+    return data;
+  }catch(err){
+    console.log(err);
+    return err;
+  }
+}
+
+export const deleteFromCart = async (id: string) => {
+  try{
+    const res = await axiosInstance.delete(`/users/deleteFromCart?id=${id}`);
+    return res.status;
+  }catch(err){
+    console.log(err);
+    return err;
   }
 }

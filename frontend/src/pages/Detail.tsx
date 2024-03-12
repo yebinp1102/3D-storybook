@@ -1,4 +1,3 @@
-import Bg from '../../public/images/thumbnail.png'
 import StarFull from '../../public/images/starFull.svg';
 import StarHalf from '../../public/images/starHalf.svg';
 import Eye from '../../public/images/eye.svg';
@@ -46,7 +45,7 @@ const Detail = () => {
     <div>
       <div className="w-full flex_col relative pb-28">
         <img 
-          src={Bg}
+          src={`${import.meta.env.VITE_SERVER_URL}/${template?.images}`}
           alt='bg_banner'
           className='absolute w-full object-cover h-[700px] top-0 left-0 z-1'
         />
@@ -76,34 +75,33 @@ const Detail = () => {
             </div>
 
             {/* bottom */}
-            <div className='py-4 flex gap-8'>
+            <div className='py-4 flex flex_col lg:flex-row gap-8'>
+              <div className="flex gap-8 flex-1">
+                {/* img */}
+                <div className="flex_col gap-4 w-[280px]">
+                  <img 
+                    src={`${import.meta.env.VITE_SERVER_URL}/${template?.images}`}
+                    alt='동화_이미지'
+                    className='border max-w-[280px] w-full h-[340px] relative object-cover'
+                  />
+                  <ul className='flex_col gap-4'>
+                    <button onClick={() => navigate('/explore_projects')} className='bg-primary-main border flex-center gap-1.5 text-slate-700 shadow-md py-1 rounded-md'>
+                      <img src={Book} alt='book_icon' className='w-6' />
+                      지금 보기
+                    </button>
+                    <button 
+                      onClick={() => handleAddToCart(template._id)}
+                      className='bg-white border py-1 shadow-md rounded-md flex-center gap-1.5'
+                    >
+                      <img src={Cart} alt='book_icon' className='w-[17px]' />
+                      카트에 담기
+                    </button>
+                  </ul>
+                </div>
 
-              {/* img */}
-              <div className="flex_col gap-4">
-                <img 
-                  src={`${import.meta.env.VITE_SERVER_URL}/${template?.images}`}
-                  alt='동화_이미지'
-                  className='border max-w-[280px] w-full h-[340px] relative object-cover'
-                />
-                <ul className='flex_col gap-4'>
-                  <button onClick={() => navigate('/explore_projects')} className='bg-primary-main border flex-center gap-1.5 text-slate-700 shadow-md py-1 rounded-md'>
-                    <img src={Book} alt='book_icon' className='w-6' />
-                    지금 보기
-                  </button>
-                  <button 
-                    onClick={() => handleAddToCart(template._id)}
-                    className='bg-white border py-1 shadow-md rounded-md flex-center gap-1.5'
-                  >
-                    <img src={Cart} alt='book_icon' className='w-[17px]' />
-                    카트에 담기
-                  </button>
-                </ul>
-              </div>
-
-              {/* descript */}
-              <div className="flex_col">
-                {/* details */}
-                <div className="flex gap-12 py-4">
+                {/* descript */}
+                <div className="flex_col mt-10 flex-1">
+                  {/* details */}
                   <div className="flex_col w-full">
                     <p className='text-lg font-semibold mb-4'>템플릿 관련 정보 </p>
                     <ul className="flex gap-5 items-center text-sm border-y py-3 border-black">
@@ -117,10 +115,9 @@ const Detail = () => {
                         <img src={StarHalf} alt='star' className='w-5' />
                       </li>
                       <p className='border-r border-slate-700 pr-4'>전체이용가</p>
-                      <p className='border-r border-slate-700 pr-4'>지은이 이름</p>
                       <p>2024</p>
                     </ul>
-                    
+                      
                     {/* storyline */}
                     <div className="flex_col gap-3 mt-8 ">
                       <h3 className='text-lg font-semibold text-emerald-500'>[ 상세정보 ]</h3>
@@ -130,23 +127,25 @@ const Detail = () => {
                     </div>
                   </div>
 
-                  {/* gallery */}
-                  <div className="flex_col gap-3 pb-4 max-w-[200px]">
-                    <h1 className='text-xl'>갤러리</h1>
-                    <img src={Bg} alt="갤러리01" className='min-w-[180px] w-full object-cover h-[100px] bg-black border' />
-                    <ul className=" grid grid-cols-3 gap-3">
-                      <img src={Bg} alt='갤02' className='w-full object-cover bg-black border h-[55px]' />
-                      <img src={Bg} alt='갤03' className='w-full object-cover bg-black border h-[55px]' />
-                      <div className='w-full bg-white border h-[55px] text-xs flex-center'>
-                        <img src={Plus} alt='plus' className='w-3 mr-0.5' />
-                        더보기
-                      </div>
-                    </ul>
-                  </div>
                 </div>
-
               </div>
 
+              {/* gallery */}
+              <div className="flex_col gap-3 max-w-[200px]">
+                <h1 className='text-xl'>갤러리</h1>
+                <img 
+                  src={`${import.meta.env.VITE_SERVER_URL}/${template?.images}`} 
+                  alt="갤러리01" className='min-w-[180px] w-full object-cover h-[100px] bg-black border' 
+                />
+                <ul className=" grid grid-cols-3 gap-3">
+                  <img src={`${import.meta.env.VITE_SERVER_URL}/${template?.images}`} alt='갤02' className='w-full object-cover bg-black border h-[55px]' />
+                  <img src={`${import.meta.env.VITE_SERVER_URL}/${template?.images}`} alt='갤03' className='w-full object-cover bg-black border h-[55px]' />
+                  <div className='w-full bg-white border h-[55px] text-xs flex-center'>
+                    <img src={Plus} alt='plus' className='w-3 mr-0.5' />
+                    더보기
+                  </div>
+                </ul>
+              </div>
             </div>
 
           </div>

@@ -87,4 +87,20 @@ router.post('/addToCart', auth, async(req, res) => {
   }
 })
 
+router.delete('/deleteFromCart', auth, async (req, res) => {
+  try{
+    const userInfo = await User.findOneAndUpdate(
+      {_id: req.user._id},
+      {
+        $pull : { "cart" : {"id" : req.query.id} }
+      },
+      {new: true}
+    )
+    return res.sendStatus(200);
+  }catch(err){
+    console.log(err);
+    return res.status(500)
+  }
+})
+
 module.exports = router;

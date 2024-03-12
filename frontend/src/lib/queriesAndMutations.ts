@@ -4,7 +4,7 @@ import {
   useQueryClient, // use for modifiying data
 } from '@tanstack/react-query'
 import { NewUser, Template } from '../types'
-import { addToCart, createUserAccount, getAllTemplates, getTemplate, signInAccount, uploadTemplate } from './APIs'
+import { addToCart, createUserAccount, deleteFromCart, fetchCartItems, getAllTemplates, getTemplate, signInAccount, uploadTemplate } from './APIs'
 
 // react-query를 사용하는 이유 : fetching, mutation 데이터를 단순화하기 위해서 
 
@@ -59,6 +59,33 @@ export const useAddToCart = () => {
     onSuccess: () => {
       queryClient.invalidateQueries({
         queryKey: ['ADD_TO_CART']
+      }),
+      queryClient.invalidateQueries({
+        queryKey: ['FETCH_CART_ITEMS']
+      })
+    }
+  })
+}
+
+export const useFetchCartItems = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (cartItemsId: string[]) => fetchCartItems(cartItemsId),
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['FETCH_CART_ITEMS']
+      })
+    }
+  })
+}
+
+export const useDeleteFromCart = () => {
+  const queryClient = useQueryClient();
+  return useMutation({
+    mutationFn: (id: string) => deleteFromCart(id), 
+    onSuccess: () => {
+      queryClient.invalidateQueries({
+        queryKey: ['FETCH_CART_ITEMS']
       })
     }
   })

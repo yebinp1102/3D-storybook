@@ -1,4 +1,4 @@
-import { useNavigate } from 'react-router-dom'
+import { useNavigate, useParams } from 'react-router-dom'
 import IndicatorIcon from '../../public/images/Indicator.svg'
 import CheckIcon from '../../public/images/check.svg'
 
@@ -8,10 +8,10 @@ import { useState } from 'react'
 import PaymentMethod from '../components/order/PaymentMethod'
 import PointUsage from '../components/order/PointUsage'
 import CouponUsage from '../components/order/CouponUsage'
-import AddressInfo from '../components/order/AddressInfo'
 import CustomerInfo from '../components/order/CustomerInfo'
 
 const Order = () => {
+  const {price} = useParams();
   const navigate = useNavigate();
   const [consent, setConsent] = useState<boolean>(false);
 
@@ -30,7 +30,7 @@ const Order = () => {
             <div className="absolute w-full top-5 right-0 bg-white border h-[8px]"></div>
             <Step step={1} text="장바구니" isActive={false} />
             <Step step={2} text="주문정보" isActive={true} />
-            <Step step={3} text="결제하기" isActive={false} />
+            <Step step={3} text="결제완료" isActive={false} />
           </div>
         </div>
       </div>
@@ -41,9 +41,6 @@ const Order = () => {
         <div className="max-w-[740px] w-full flex flex-col gap-8">
           {/* 주문 고객 */}
           <CustomerInfo />
-
-          {/* 배송지 */}
-          <AddressInfo />
 
           {/* 쿠폰할인 */}
           <CouponUsage />
@@ -63,33 +60,28 @@ const Order = () => {
             <p className="border-b-[1.5px] border-slate-300 text-xl pt-0 py-4">
               최종 결제 금액 :
             </p>
-            <ul className="py-6 border-b-2 border-slate-300 flex flex-col gap-4">
+            <ul className="py-6 border-b-2 border-slate-300 text-sm flex flex-col gap-5">
               <PriceList
                 text="주문금액 총합"
-                price={`${Number(24600).toLocaleString()} 원`}
+                price={`${Number(price).toLocaleString()} 원`}
               />
               <PriceList
-                text="배송비"
-                price={`+ ${Number(3000).toLocaleString()} 원`}
-              />
-              <PriceList
-                text="쿠폰할인 금액"
+                text="쿠폰할인"
                 price={`- ${Number(0).toLocaleString()} 원`}
               />
               <PriceList
-                text="포인트 사용금액"
+                text="포인트 사용"
                 price={`- ${Number(0).toLocaleString()} P`}
               />
-              <PriceList text="금액 총합" price={`27,600 원`} />
             </ul>
             <div className="flex flex-col gap-4 pt-5 pb-2">
-              <div className='flex justify-between text-blue-600'>
+              <div className='flex justify-between text-green-500'>
                 총 결제 예정 금액 :
-                <p className="text-xl">27,600 원</p>
+                <p className="text-xl">{Number(price).toLocaleString()} 원</p>
               </div>
               <div className="flex justify-between text-sm text-slate-400">
                 적립 예정 Tale 포인트 :
-                <span>276 P</span>
+                <span>{(Number(price)/10).toLocaleString()} P</span>
               </div>
             </div>
           </div>
@@ -109,7 +101,7 @@ const Order = () => {
 
           {/* 결제 버튼 */}
           <button
-            className="bg-blue-600 text-white w-full py-3.5 shadow-lg rounded-md"
+            className="bg-primary-main text-white w-full py-3 shadow-lg font-semibold rounded-md"
             onClick={() => navigate("/order")}
           >
             결제하기

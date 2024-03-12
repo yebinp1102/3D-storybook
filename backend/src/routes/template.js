@@ -2,6 +2,7 @@ const express = require('express');
 const Template = require('../models/Template');
 const router = express.Router();
 const multer = require('multer');
+const auth = require('../middleware/auth');
 
 const storage = multer.diskStorage({
   destination: function (req, file, cb){
@@ -44,12 +45,12 @@ router.get('/', async (req, res) => {
   }
 })
 
-router.get('/:id', async (req, res) => {
+router.get('/:id', auth, async (req, res) => {
   const type = req.query.type;
-  const templateId = req.params.id;
+  const templateId = req.params.id.split(',');
   try{
     const template = await Template.find({ _id: {$in: templateId} });
-    return res.status(200).send(template[0]);
+    return res.status(200).send(template);
   }catch(err){
     console.log(err);
   }
