@@ -1,6 +1,5 @@
 import StarFull from '../../public/images/starFull.svg';
 import StarHalf from '../../public/images/starHalf.svg';
-import Eye from '../../public/images/eye.svg';
 import Book from '../../public/images/book.svg';
 import PlusCircle from '../../public/images/plusCircle.svg';
 import Award from '../../public/images/award.svg'
@@ -99,20 +98,19 @@ const Detail = () => {
                   </ul>
                 </div>
 
-                {/* descript */}
+                {/* 템플릿 관련 정보 */}
                 <div className="flex_col mt-10 flex-1">
                   {/* details */}
                   <div className="flex_col w-full">
                     <p className='text-lg font-semibold mb-4'>템플릿 관련 정보 </p>
                     <ul className="flex gap-5 items-center text-sm border-y py-3 border-black">
-                      <li className='flex gap-2 text-slate-600'>
-                        <img src={Eye} alt='eye' className='w-5' /> 35,437</li>
-                      <li className='flex'>
-                        <img src={StarFull} alt='star' className='w-5' />
-                        <img src={StarFull} alt='star' className='w-5' />
-                        <img src={StarFull} alt='star' className='w-5' />
-                        <img src={StarFull} alt='star' className='w-5' />
-                        <img src={StarHalf} alt='star' className='w-5' />
+                      <li>판매: {template?.views} 건</li>
+                      <li className='flex'> 평점: &nbsp;
+                        <img src={StarFull} alt='star' className='w-4' />
+                        <img src={StarFull} alt='star' className='w-4' />
+                        <img src={StarFull} alt='star' className='w-4' />
+                        <img src={StarFull} alt='star' className='w-4' />
+                        <img src={StarHalf} alt='star' className='w-4' />
                       </li>
                       <p className='border-r border-slate-700 pr-4'>전체이용가</p>
                       <p>2024</p>

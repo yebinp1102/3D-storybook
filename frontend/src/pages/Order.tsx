@@ -1,19 +1,68 @@
-import { useNavigate, useParams } from 'react-router-dom'
+import { useNavigate } from 'react-router-dom'
 import IndicatorIcon from '../../public/images/Indicator.svg'
 import CheckIcon from '../../public/images/check.svg'
 
 import PriceList from '../components/cart/PriceList'
 import Step from '../components/cart/Step'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import PaymentMethod from '../components/order/PaymentMethod'
 import PointUsage from '../components/order/PointUsage'
 import CouponUsage from '../components/order/CouponUsage'
 import CustomerInfo from '../components/order/CustomerInfo'
+import { useUserContext } from '../context/AuthContext'
+import { TemplateItem } from '../types'
+import { usePayment } from '../lib/queriesAndMutations'
+import { toast } from 'react-toastify'
+
+type CustomerType = {
+  name: string;
+  phone: string[];
+  email: string[];
+}
 
 const Order = () => {
-  const {price} = useParams();
   const navigate = useNavigate();
+  const [total, setTotal] = useState<number>(0);
   const [consent, setConsent] = useState<boolean>(false);
+  const {user, cartDetails, checkAuthUser} = useUserContext();
+  const {mutateAsync: payment} = usePayment();
+  const INITIAL_USER = {
+    name: '',
+    phone: ['','',''],
+    email: user.email.split('@')
+  }
+  const [customer, setCustomer] = useState<CustomerType>(INITIAL_USER)
+
+  const handler = async () => {
+    if (cartDetails) {
+      setCustomer(INITIAL_USER);
+      const sum = cartDetails.reduce((a:number, b: TemplateItem) => a + b.price, 0);
+      setTotal(sum);
+    }
+  };
+  
+  const handlePayment = async () => {
+    const body = {
+      total,
+      name: customer.name,
+      phone: customer.phone.join('-'),
+      email: user.email,
+      cart: cartDetails
+    }
+    const responseStatus = await payment(body);
+    if(responseStatus === 200){
+      toast.info('성공적으로 결제 했습니다.');
+      checkAuthUser();
+      navigate('/')
+    }else{
+      toast.info('결제에 실패했습니다. 다시 시도해주세요.');
+      navigate('/cart')
+    }
+  }
+
+  useEffect(() => {
+    handler();
+  },[user, cartDetails])
 
   return (
     <div className="w-full px-8 pb-20 flex flex-col">
@@ -40,7 +89,7 @@ const Order = () => {
         {/* left */}
         <div className="max-w-[740px] w-full flex flex-col gap-8">
           {/* 주문 고객 */}
-          <CustomerInfo />
+          <CustomerInfo setCustomer={setCustomer} customer={customer} />
 
           {/* 쿠폰할인 */}
           <CouponUsage />
@@ -63,7 +112,7 @@ const Order = () => {
             <ul className="py-6 border-b-2 border-slate-300 text-sm flex flex-col gap-5">
               <PriceList
                 text="주문금액 총합"
-                price={`${Number(price).toLocaleString()} 원`}
+                price={`${Number(total).toLocaleString()} 원`}
               />
               <PriceList
                 text="쿠폰할인"
@@ -77,11 +126,11 @@ const Order = () => {
             <div className="flex flex-col gap-4 pt-5 pb-2">
               <div className='flex justify-between text-green-500'>
                 총 결제 예정 금액 :
-                <p className="text-xl">{Number(price).toLocaleString()} 원</p>
+                <p className="text-xl">{Number(total).toLocaleString()} 원</p>
               </div>
               <div className="flex justify-between text-sm text-slate-400">
                 적립 예정 Tale 포인트 :
-                <span>{(Number(price)/10).toLocaleString()} P</span>
+                <span>{(Number(total)/10).toLocaleString()} P</span>
               </div>
             </div>
           </div>
@@ -102,7 +151,7 @@ const Order = () => {
           {/* 결제 버튼 */}
           <button
             className="bg-primary-main text-white w-full py-3 shadow-lg font-semibold rounded-md"
-            onClick={() => navigate("/order")}
+            onClick={handlePayment}
           >
             결제하기
           </button>

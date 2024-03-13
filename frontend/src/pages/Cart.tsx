@@ -4,28 +4,20 @@ import ListItem from "../components/cart/ListItem";
 import Step from "../components/cart/Step";
 import { useUserContext } from "../context/AuthContext";
 import { useEffect, useState } from "react";
-import { useDeleteFromCart, useFetchCartItems } from "../lib/queriesAndMutations";
+import { useDeleteFromCart } from "../lib/queriesAndMutations";
 import { TemplateItem } from "../types";
 import { toast } from "react-toastify";
 
 const Cart = () => {
   const navigate = useNavigate();
-  const [cartDetails, setCartDetails] = useState<TemplateItem[]>();
+  // const [cartDetails, setCartDetails] = useState<TemplateItem[]>();
   const [total, setTotal] = useState<number>(0);
-  const { user, checkAuthUser } = useUserContext();
-  const { mutateAsync: fetchCartItems, isPending: isFetching } = useFetchCartItems();
+  const { user, checkAuthUser, cartDetails } = useUserContext();
   const {mutateAsync: deleteFromCart} = useDeleteFromCart();
 
   const handler = async () => {
-    const ids: string[] = [];
-    if (user.cart.length > 0) {
-      user.cart.forEach((id) => {
-        ids.push(id.id);
-      });
-      const cartItems = await fetchCartItems(ids);
-      setCartDetails(cartItems);
-
-      const sum = cartItems.reduce((a:number, b: TemplateItem) => a + b.price, 0);
+    if (cartDetails) {
+      const sum = cartDetails.reduce((a:number, b: TemplateItem) => a + b.price, 0);
       setTotal(sum);
     }
   };
@@ -43,7 +35,7 @@ const Cart = () => {
 
   const handleRouteToOrder = () => {
     if(total > 0){
-      navigate(`/order/${total}`);
+      navigate(`/order/`);
     }else{
       toast.info('장바구니 금액이 100원 이상이어야 주문이 가능합니다.')
     }
@@ -52,10 +44,6 @@ const Cart = () => {
   useEffect(() => {
     handler();
   }, [user]);
-
-  if (isFetching) {
-    return <h1>Loading . . .</h1>;
-  }
 
   return (
     <div className="max-w-7xl mx-auto px-8 pb-20 flex flex-col">

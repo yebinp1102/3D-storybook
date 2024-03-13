@@ -49,8 +49,10 @@ router.get('/:id', auth, async (req, res) => {
   const type = req.query.type;
   const templateId = req.params.id.split(',');
   try{
-    const template = await Template.find({ _id: {$in: templateId} });
-    return res.status(200).send(template);
+    if(templateId){
+      const template = await Template.find({ _id: {$in: templateId} });
+      return res.status(200).send(template);
+    }else return res.status(200).send([])
   }catch(err){
     console.log(err);
   }

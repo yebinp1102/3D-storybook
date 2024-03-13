@@ -1,4 +1,4 @@
-import { NewUser, Template } from "../types";
+import { NewUser, PaymentType, Template } from "../types";
 import axiosInstance from "../utils/axios";
 
 
@@ -87,7 +87,16 @@ export const deleteFromCart = async (id: string) => {
     const res = await axiosInstance.delete(`/users/deleteFromCart?id=${id}`);
     return res.status;
   }catch(err){
-    console.log(err);
     return err;
+  }
+}
+
+export const payment = async (body: PaymentType) => {
+  try{
+    const res = await axiosInstance.post(`/users/payment`, body);
+    if(res.status !== 200) throw Error;
+    return res.status
+  }catch(err){
+    return err?.response.data.message;
   }
 }

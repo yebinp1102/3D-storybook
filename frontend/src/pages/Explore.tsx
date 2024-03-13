@@ -30,28 +30,29 @@ const Explore = () => {
       <img 
         src={`${import.meta.env.VITE_SERVER_URL}/${templates[hoverIdx]?.images[0]}`}
         alt='banner'
-        className='w-full h-[600px] object-cover absolute'
+        className='w-full right-0 h-[600px] object-cover absolute'
       />
       <div className='bg-gradient-to-r from-white to-white/0 w-full h-[600px] absolute'></div>
       <div className='bg-gradient-to-r from-white/50 to-white/0 w-full h-[600px] absolute'></div>
 
-      <div className='relative flex_col justify-center gap-8 max-w-7xl p-12 w-full mx-auto h-[600px]'>
-        <h1 className='text-4xl font-bold mb-6'>{templates[hoverIdx]?.title}</h1>
+      <div className='relative flex_col justify-center max-w-7xl p-12 w-full mx-auto h-[600px]'>
+        <h1 className='text-4xl font-bold'>{templates[hoverIdx]?.title}</h1>
         
-        <div className="flex_col gap-3.5">
-          <ul className="flex gap-8 text-primary-main items-center text-lg font-semibold">
-            <li className='border-primary-main border-2 py-1 px-5'>전체이용가</li>
+        <div className="flex_col mt-8 text-slate-600">
+          <ul className="flex gap-6 mb-12 items-center font-semibold">
+            <li className='border-primary-main border-2 py-0.5 px-4'>전체이용가</li>
             <li className='flex gap-2 items-center'>
-              <img src={Eye} className='w-8' />조회수 : {templates[hoverIdx]?.views}
+              $ 판매량 : {templates[hoverIdx]?.views}
             </li>
-          </ul>
-          <li className='flex gap-2 text-primary-main items-center text-lg font-semibold'>
-            <img src={Star} alt="star" className='w-8' />
-            별점 : 4.5
+            <li className='flex gap-2 items-center font-semibold'>
+            <img src={Star} alt="star" className='w-6' />별점 : 4.5
           </li>
+          </ul>
         </div>
 
-        <div className="flex gap-6 mt-6">
+        <p className='w-[60%] text-slate-600'>{templates[hoverIdx]?.description}</p>
+
+        <div className="flex gap-6 mt-12">
           <button 
             className='border hover:scale-105 bg-primary-main text-white px-6 py-2.5 rounded-full shadow-lg border-white'>
               {templates[hoverIdx]?.price.toLocaleString()} 원(won)
@@ -66,13 +67,17 @@ const Explore = () => {
 
       </div>
       
-      <div className='max-w-7xl mx-auto w-full relative'>
-        <div className='grid grid-cols-3 gap-8 p-8 relative h-full -top-20 white-shadow-box w-full'>
+      <div className='flex_col max-w-7xl mx-auto w-full relative white-shadow-box -top-20  p-8'>
+        <button 
+          onClick={() => navigate('/upload_template')}
+          className='border self-end border-primary-main w-fit text-primary-main py-1.5 px-6 rounded-lg mb-6'
+        >
+          + 새로운 템플릿 추가하기
+        </button>
+        <div className='grid grid-cols-2 lg:grid-cols-3 gap-8  h-full w-full'>
           {templates?.map((temp: TemplateItem, idx: number) => (
             <TemplateList key={temp._id} temp={temp} handleHover={handleHover} idx={idx} />
           ))}
-
-
         </div>
       </div>
     </div>

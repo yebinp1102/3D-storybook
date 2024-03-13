@@ -56,3 +56,11 @@ export type TemplateItem = {
   views: number;
   images: [string];
 }
+
+export type PaymentType = {
+  total: number;
+  name: string;
+  phone: string;
+  email: string;
+  cart: TemplateItem[],
+}

@@ -18,6 +18,7 @@ axiosInstance.interceptors.response.use(function (response) {
   return response;
 }, function (err){
   if(err.response.data === 'jwt expired'){
+    localStorage.removeItem('accessToken');
     window.location.reload();
   }
   return Promise.reject(err);
