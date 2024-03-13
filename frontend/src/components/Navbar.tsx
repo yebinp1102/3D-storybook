@@ -55,7 +55,7 @@ const Navbar = ({toggleOn, setToggleOn} : Props) => {
             className={ ({isActive}) => isActive ? isActiveStyle : 'relative py-2 px-6'}
           >
             장바구니 
-            <span className='absolute bg-blue-500 text-white top-1 flex-center -right-2 border border-white h-7 w-7 rounded-full'>{`${user.cart.length}`}</span>
+            <span className='absolute bg-blue-500 text-white -top-1 flex-center -right-1.5 border border-white h-7 w-7 rounded-full'>{`${user.cart.length}`}</span>
           </NavLink>
           {user.id && <li onClick={handleLogout} className='px-6 py-2'>로그아웃</li>}
         </ul>

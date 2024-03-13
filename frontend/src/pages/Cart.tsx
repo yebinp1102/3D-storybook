@@ -15,10 +15,12 @@ const Cart = () => {
   const { user, checkAuthUser, cartDetails } = useUserContext();
   const {mutateAsync: deleteFromCart} = useDeleteFromCart();
 
-  const handler = async () => {
-    if (cartDetails) {
+  const handler = () => {
+    if (user.cart.length > 0) {
       const sum = cartDetails.reduce((a:number, b: TemplateItem) => a + b.price, 0);
       setTotal(sum);
+    }else{
+      setTotal(0);
     }
   };
 
@@ -30,6 +32,7 @@ const Cart = () => {
     }else{
       toast.info('해당 템플릿을 카트에서 제외시켰습니다.');
       checkAuthUser();
+      handler();
     }
   }
 
@@ -43,7 +46,7 @@ const Cart = () => {
 
   useEffect(() => {
     handler();
-  }, [user]);
+  }, [user, cartDetails]);
 
   return (
     <div className="max-w-7xl mx-auto px-8 pb-20 flex flex-col">

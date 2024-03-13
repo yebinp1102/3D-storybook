@@ -1,4 +1,3 @@
-import Reveal from "../Reveal";
 import Love from "../../../public/images/love.png";
 import Dream from "../../../public/images/dream.png";
 import Product from "../../../public/images/product.png";
