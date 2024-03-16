@@ -51,13 +51,19 @@ const Navbar = ({toggleOn, setToggleOn} : Props) => {
             둘러보기
           </NavLink>
           <NavLink 
+            to="/payment"
+            className={ ({isActive}) => isActive ? isActiveStyle : 'py-2 px-6'}
+          >
+            결제내역
+          </NavLink>
+          <NavLink 
             to="/cart"
-            className={ ({isActive}) => isActive ? isActiveStyle : 'relative py-2 px-6'}
+            className={ ({isActive}) => isActive ? isActiveStyle : 'relative py-2 px-6 pl-4'}
           >
             장바구니 
             <span className='absolute bg-blue-500 text-white -top-1 flex-center -right-1.5 border border-white h-7 w-7 rounded-full'>{`${user.cart.length}`}</span>
           </NavLink>
-          {user.id && <li onClick={handleLogout} className='px-6 py-2'>로그아웃</li>}
+          {user.id && <button onClick={handleLogout} className='px-6 py-2'>로그아웃</button>}
         </ul>
       </div>
       <div 
