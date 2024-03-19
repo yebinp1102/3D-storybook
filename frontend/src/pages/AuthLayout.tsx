@@ -1,5 +1,5 @@
 import { Outlet, useNavigate } from "react-router-dom"
-import BgImg from '../../public/images/Royal_Heath.png'
+import BgImg from '/images/Royal_Heath.png'
 import { useUserContext } from "../context/AuthContext"
 import { useEffect } from "react";
 

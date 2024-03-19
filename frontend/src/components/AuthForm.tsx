@@ -1,9 +1,9 @@
-import userIcon from '../../public/images/user.svg'
-import emailIcon from '../../public/images/email.svg'
-import keyIcon from '../../public/images/key.svg'
+import userIcon from '/images/user.svg'
+import emailIcon from '/images/email.svg'
+import keyIcon from '/images/key.svg'
 import {useForm, SubmitHandler} from 'react-hook-form';
 import { Link, useNavigate } from 'react-router-dom'
-import logo from '../../public/images/logo.svg';
+import logo from '/images/logo.svg';
 import { useEffect } from 'react';
 import { toast } from 'react-toastify';
 import { useCreateUserAccountMutation, useSignInAccount } from '../lib/queriesAndMutations';
@@ -85,6 +85,8 @@ const AuthForm = ({type}: Props) => {
       toast.info('올바르지 않은 토큰입니다. 다시 로그인해주세요.');
     }
   }
+
+  console.log(isValid);
 
 
   return (
@@ -207,8 +209,8 @@ const AuthForm = ({type}: Props) => {
 
         <button 
           type='submit' 
-          disabled={type === "Register" && !isValid} 
-          className='rounded-sm w-full py-2 text-white bg-gradient-to-r to-primary-main from-blue-300 font-bold tracking-wide text-lg'
+          disabled={!isValid} 
+          className={` disabled:to-slate-300 disabled:from-slate-300 rounded-sm w-full py-2 text-white bg-gradient-to-r to-primary-main from-blue-300 font-bold tracking-wide text-lg`}
         >
           {type === "Register" ? "회원가입" : "로그인"}
         </button>
