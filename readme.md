@@ -1,5 +1,4 @@
 # Sparkle Tale : 다양한 3D 템플릿을 판매하는 쇼핑몰
----
 
 
 
@@ -171,7 +170,7 @@ Sparkle_Tale
   - 해시화 한 비밀번호와 나머지 유저 정보를 DB의 User collection에 저장
   - 성공적으로 DB에 저장하면 status 200, 실패하면 status 500을 응답으로 반환
 
-<br><img src="frontend/public/readme/회원가입.gif" alt="회원가입 유효성 검사" width="450" />
+<br><img src="frontend/public/readme/회원가입.gif" alt="회원가입 유효성 검사" width="600" />
 
 
 <br><br>
@@ -187,12 +186,12 @@ Sparkle_Tale
   - 사용자가 입력한 이메일과 일치하는 이메일을 가진 유저가 있는지 DB의 user collection에서 찾고 있다면 해당 유저의 모든 정보를 가져옴.
   - 만약 해당 이메일에 일치하는 유저 정보가 없다면 status 500과 함께 함수 종료
   - 찾았다면, 해당 유저의 비밀번호와 사용자가 입력한 비밀번호가 일치하는 지 확인. 
-  - 해시화 한 비밀번호는 원본으로 복구할 수 없기 때문에 bcrpyt의 compare 메서드를 통해 일치하는지 판별
+  - 해시화 한 비밀번호는 원본으로 복구할 수 없기 때문에 bcrpyt의 compare 메서드를 통해 일치 여부 판별
   - 비밀번호가 일치하지 않으면 status 500과 함께 함수 종료
   - 비밀번호 일치하면 jsonwebtoken으로 12시간동안 유효한 토큰 생성 
   - 토큰까지 생성했다면 클라이언트에 status 200과 비밀번호를 제외한 유저의 모든 정보 그리고 토큰 정보를 응답으로 보낸다
 
-<br><img src="frontend/public/readme/로그인.gif" alt="회원가입 유효성 검사" width="450" />
+<br><img src="frontend/public/readme/로그인.gif" alt="회원가입 유효성 검사" width="600" />
 
 
 <br><br>
@@ -200,4 +199,32 @@ Sparkle_Tale
 
 #### [ <span style="color: orange">홈페이지</span> ]
 - 크게 4개의 섹션으로 나뉜다.
-- 
+- 배너 )
+  - 아이들의 시각적 호기심을 자극하기 위해서 Parallax Scrolling 기술 사용
+  - 스크롤 할 때마다 window.ScrollY 값을 추적해서 이미지들의 위치를 다르게 함
+  - window.ScrollY 값에 따라 이미지 배치가 달라져서 애니메이션처럼 보이는 효과 구현
+
+<br><img src="frontend/public/readme/배너.gif" alt="회원가입 유효성 검사" width="600" /><br>
+
+- 섹션 1 ) 
+  - Sparkle Tale 짧은 소개
+  - 특정 scrollY 값에 도달하면 텍스트가 등장하는 효과 구현
+
+<br><img src="frontend/public/readme/섹션1.gif" alt="회원가입 유효성 검사" width="600" /><br>
+
+- 섹션 2 ) 
+  - Sparkle Tale의 비전 소개
+  - 특정 scrollY 값에 도달하면 카드 3개가 순차적으로 등장
+
+<br><img src="frontend/public/readme/섹션2.gif" alt="회원가입 유효성 검사" width="600" /><br>
+
+- 섹션 3 ) 
+  - 템플릿 예시 소개
+  - 특정 scrollY 값에 도달하면 예시 이미지 등장
+
+<br><img src="frontend/public/readme/섹션3.gif" alt="회원가입 유효성 검사" width="600" /><br>
+
+
+<br><br><br>
+
+#### [ <span style="color: orange">상품 리스트 페이지</span> ]
