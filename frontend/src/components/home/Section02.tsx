@@ -101,6 +101,10 @@ const Section02 = () => {
               스파클 테일은 아름다운 3D 동화를 제공합니다. 이는 색다른 시각적
               경험을 제공합니다. 이야기에서 비롯되는 교훈과 가치를 공유하며
               서로에게 긍정적인 영향을 줍니다.
+
+              우리는 이야기를 통해 아이들에게 즐거움을 주고, 
+              긍정적인 가치를 전달하고자 합니다. 또한 Sparkle Tale은 
+              훌륭한 이야기와 흥미진진한 시각적 경험을 제공하여, 행복과 즐거움을 주기 위해 노력합니다.
             </p>
             <div className="flex-center">
               <button className="cursor-pointer bg-primary-main w-fit py-1.5 px-8 mb-4 shadow-md rounded-md mt-8 font-semibold">
@@ -130,9 +134,8 @@ const Section02 = () => {
             </h3>
             <div className="flex-center"></div>
             <p className="text-sm px-8 text-center">
-              스파클 테일은 아름다운 3D 동화를 제공합니다. 이는 색다른 시각적
-              경험을 제공합니다. 이야기에서 비롯되는 교훈과 가치를 공유하며
-              서로에게 긍정적인 영향을 줍니다.
+              세계 각국의 다양한 문화를 모두에게 알리고자 하는 꿈을 가지고 있습니다. 
+              또한 즐거움으로 가득 찬 동화를 공유하여, 다양성을 존중하고 이해하는데 기여하고자 합니다.
             </p>
             <div className="flex-center">
               <button className="cursor-pointer bg-primary-main w-fit py-1.5 px-8 mb-4 shadow-md rounded-md mt-8 font-semibold">
@@ -140,7 +143,6 @@ const Section02 = () => {
               </button>
             </div>
           </motion.div>
-
 
         </div>
       </div>
