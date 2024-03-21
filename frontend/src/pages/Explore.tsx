@@ -1,16 +1,17 @@
-import Eye from '../../public/images/eye.svg';
 import Star from '../../public/images/starFull.svg';
 import { useEffect, useState } from 'react';
 import { useGetAllTemplates } from '../lib/queriesAndMutations';
 import TemplateList from '../components/TemplateList';
 import { TemplateItem } from '../types';
 import { useNavigate } from 'react-router-dom';
+import { useUserContext } from '../context/AuthContext';
 
 const Explore = () => {
   const navigate = useNavigate();
-  const [templates, setTemplates] = useState<TemplateItem[]>([]);
+  const [templates, setTemplates] = useState<TemplateItem[]>();
   const [hoverIdx, setHoverIdx] = useState<number>(0);
   const {data: allTemplates, isPending: isGettingTemplates} = useGetAllTemplates()
+  const {user} = useUserContext();
 
   const handleHover = (idx:number) => {
     if(hoverIdx !== idx) setHoverIdx(idx);
@@ -68,12 +69,14 @@ const Explore = () => {
       </div>
       
       <div className='flex_col max-w-7xl mx-auto w-full relative white-shadow-box -top-20  p-8'>
-        <button 
-          onClick={() => navigate('/upload_template')}
-          className='border self-end border-primary-main w-fit text-primary-main py-1.5 px-6 rounded-lg mb-6'
-        >
-          + 새로운 템플릿 추가하기
-        </button>
+        {user.isAdmin &&  
+          <button 
+            onClick={() => navigate('/upload_template')}
+            className='border self-end border-primary-main w-fit text-primary-main py-1.5 px-6 rounded-lg mb-6'
+          >
+            + 새로운 템플릿 추가하기
+          </button>
+        }
         <div className='grid grid-cols-2 lg:grid-cols-3 gap-8  h-full w-full'>
           {templates?.map((temp: TemplateItem, idx: number) => (
             <TemplateList key={temp._id} temp={temp} handleHover={handleHover} idx={idx} />
