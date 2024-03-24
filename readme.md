@@ -239,3 +239,14 @@ Sparkle_Tale
   - 클라이언트로부터 요청을 받으면 template collection의 모든 데이터를 fetch해서 반환
   
 <br><img src="frontend/public/readme/리스트페이지.gif" alt="상품 리스트 페이지" width="600" /><br>
+
+
+#### [ <span style="color: orange">메뉴바</span> ]
+- 구성
+  - 로고 : 클릭 시 홈페이지로 이동
+  - 5가지 메뉴들 
+    1. 홈페이지 : 클릭 시 홈페이지로 이동
+    2. 둘러보기 : 클릭 시 상품 리스트 페이지로 이동
+    3. 결제내역 : 클릭 시 결제 내역 상세 페이지로 이동
+    4. 장바구니 : 현재 장바구니에 담긴 상품의 갯수를 보여주며, 클릭 시 장바구니 리스트 페이지로 이동
+    5. 로그아웃 : 클릭 시 로그인 할 때 localStorage에 저장했던 accessToken 값을 삭제하고 로그인 페이지로 이동
