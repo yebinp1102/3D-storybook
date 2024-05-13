@@ -26,6 +26,8 @@ const Explore = () => {
     return <h1>Loading...</h1>
   }
 
+  console.log(templates);
+
   return (
     <div className="w-full flex_col relative transition-all">
       <img 
@@ -41,12 +43,12 @@ const Explore = () => {
         
         <div className="flex_col mt-8 text-slate-600">
           <ul className="flex gap-6 mb-12 items-center font-semibold">
-            <li className='border-primary-main border-2 py-0.5 px-4'>전체이용가</li>
+            <li className='border-primary-main border-2 py-0.5 px-3.5 flex gap-1'>
+            <img src={Star} alt="star" className='w-6' />전체이용가</li>
             <li className='flex gap-2 items-center'>
-              $ 판매량 : {templates[hoverIdx]?.views}
+              판매량 : {templates[hoverIdx]?.sold}
             </li>
             <li className='flex gap-2 items-center font-semibold'>
-            <img src={Star} alt="star" className='w-6' />별점 : 4.5
           </li>
           </ul>
         </div>

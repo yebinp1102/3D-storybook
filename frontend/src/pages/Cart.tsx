@@ -10,7 +10,6 @@ import { toast } from "react-toastify";
 
 const Cart = () => {
   const navigate = useNavigate();
-  // const [cartDetails, setCartDetails] = useState<TemplateItem[]>();
   const [total, setTotal] = useState<number>(0);
   const { user, checkAuthUser, cartDetails } = useUserContext();
   const {mutateAsync: deleteFromCart} = useDeleteFromCart();
@@ -38,7 +37,7 @@ const Cart = () => {
 
   const handleRouteToOrder = () => {
     if(total > 0){
-      navigate(`/order/`);
+      navigate(`/order`);
     }else{
       toast.info('장바구니 금액이 100원 이상이어야 주문이 가능합니다.')
     }

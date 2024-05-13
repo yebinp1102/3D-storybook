@@ -53,7 +53,7 @@ const Order = () => {
     if(responseStatus === 200){
       toast.info('성공적으로 결제 했습니다.');
       checkAuthUser();
-      navigate('/')
+      navigate('/payment/success');
     }else{
       toast.info('결제에 실패했습니다. 다시 시도해주세요.');
       navigate('/cart')

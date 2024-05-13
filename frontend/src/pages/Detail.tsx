@@ -1,7 +1,6 @@
 import StarFull from '../../public/images/starFull.svg';
 import StarHalf from '../../public/images/starHalf.svg';
 import Book from '../../public/images/book.svg';
-import PlusCircle from '../../public/images/plusCircle.svg';
 import Award from '../../public/images/award.svg'
 import Plus from '../../public/images/plus.svg';
 import Cart from '../../public/images/cart.svg';
@@ -65,11 +64,6 @@ const Detail = () => {
                   <img src={Award} alt='award_icon' className='w-5' />
                   Top 10
                 </button>
-
-                <button className='bg-white border border-primary-main flex-center gap-1.5 px-6 py-1 bg-opacity-70 text-slate-600 rounded-md'>
-                  <img src={Cart} alt='award_icon' className='w-[18px]' />
-                  카트 담기
-                </button>
               </ul>
             </div>
 
@@ -84,16 +78,19 @@ const Detail = () => {
                     className='border max-w-[280px] w-full h-[340px] relative object-cover'
                   />
                   <ul className='flex_col gap-4'>
-                    <button onClick={() => navigate('/explore_projects')} className='bg-primary-main border flex-center gap-1.5 text-slate-700 shadow-md py-1 rounded-md'>
-                      <img src={Book} alt='book_icon' className='w-6' />
-                      지금 보기
-                    </button>
+                    {fetchedtemplate.isAvailable && 
+                      <button onClick={() => navigate('/explore_projects')} className='bg-primary-main border flex-center gap-1.5 text-slate-700 shadow-md py-1 rounded-md'>
+                        <img src={Book} alt='book_icon' className='w-6' />
+                        지금 보기
+                      </button>
+                    }
+                    
                     <button 
                       onClick={() => handleAddToCart(template._id)}
                       className='bg-white border py-1 shadow-md rounded-md flex-center gap-1.5'
                     >
                       <img src={Cart} alt='book_icon' className='w-[17px]' />
-                      카트에 담기
+                      {fetchedtemplate.isAvailable ? '카트에 담기' : '사전 구매'}
                     </button>
                   </ul>
                 </div>
@@ -104,7 +101,7 @@ const Detail = () => {
                   <div className="flex_col w-full">
                     <p className='text-lg font-semibold mb-4'>템플릿 관련 정보 </p>
                     <ul className="flex gap-5 items-center text-sm border-y py-3 border-black">
-                      <li>판매: {template?.views} 건</li>
+                      <li>판매: {template?.sold} 건</li>
                       <li className='flex'> 평점: &nbsp;
                         <img src={StarFull} alt='star' className='w-4' />
                         <img src={StarFull} alt='star' className='w-4' />
@@ -148,94 +145,6 @@ const Detail = () => {
 
           </div>
 
-          {/* 추천 동화 */}
-          <div className="flex_col gap-6">
-            <div className="flex items-center gap-2 border-y border-slate-500 p-3 ">
-              <img src={Book} alt='book' className='w-9' />
-              <h3 className='font-semibold text-lg'>유사한 다른 동화</h3>
-            </div>
-
-            <ul className="flex gap-8 text-sm px-4">
-              {/* 01 */}
-              <li className='flex_col flex-1'>
-                <div className="bg-white w-full h-[250px]"></div>
-                <h3 className='mt-3 mb-1 text-base font-semibold'>Title 01</h3>
-                <p className='text-slate-700'>Writer 01</p>
-                <div className="flex mt-1">
-                  <img src={StarFull} alt='star' className='w-4' />
-                  <img src={StarFull} alt='star' className='w-4' />
-                  <img src={StarFull} alt='star' className='w-4' />
-                  <img src={StarFull} alt='star' className='w-4' />
-                  <img src={StarFull} alt='star' className='w-4' />
-                  <span className='ml-2'>4.5</span>
-                </div>
-              </li>
-
-              {/* 02 */}
-              <li className='flex_col flex-1'>
-                <div className="bg-white w-full h-[250px]"></div>
-                <h3 className='mt-3 mb-1 text-base font-semibold'>Title 01</h3>
-                <p className='text-slate-700'>Writer 01</p>
-                <div className="flex mt-1">
-                  <img src={StarFull} alt='star' className='w-4' />
-                  <img src={StarFull} alt='star' className='w-4' />
-                  <img src={StarFull} alt='star' className='w-4' />
-                  <img src={StarFull} alt='star' className='w-4' />
-                  <img src={StarFull} alt='star' className='w-4' />
-                  <span className='ml-2'>4.5</span>
-                </div>
-              </li>
-
-              {/* 03 */}
-              <li className='flex_col flex-1'>
-                <div className="bg-white w-full h-[250px]"></div>
-                <h3 className='mt-3 mb-1 text-base font-semibold'>Title 01</h3>
-                <p className='text-slate-700'>Writer 01</p>
-                <div className="flex mt-1">
-                  <img src={StarFull} alt='star' className='w-4' />
-                  <img src={StarFull} alt='star' className='w-4' />
-                  <img src={StarFull} alt='star' className='w-4' />
-                  <img src={StarFull} alt='star' className='w-4' />
-                  <img src={StarFull} alt='star' className='w-4' />
-                  <span className='ml-2'>4.5</span>
-                </div>
-              </li>
-
-              {/* 04 */}
-              <li className='flex_col flex-1'>
-                <div className="bg-white w-full h-[250px]"></div>
-                <h3 className='mt-3 mb-1 text-base font-semibold'>Title 01</h3>
-                <p className='text-slate-700'>Writer 01</p>
-                <div className="flex mt-1">
-                  <img src={StarFull} alt='star' className='w-4' />
-                  <img src={StarFull} alt='star' className='w-4' />
-                  <img src={StarFull} alt='star' className='w-4' />
-                  <img src={StarFull} alt='star' className='w-4' />
-                  <img src={StarFull} alt='star' className='w-4' />
-                  <span className='ml-2'>4.5</span>
-                </div>
-              </li>
-
-              {/* 05 */}
-              <li className='flex_col flex-1'>
-                <div className="bg-white w-full h-[250px]"></div>
-                <h3 className='mt-3 mb-1 text-base font-semibold'>Title 01</h3>
-                <p className='text-slate-700'>Writer 01</p>
-                <div className="flex mt-1">
-                  <img src={StarFull} alt='star' className='w-4' />
-                  <img src={StarFull} alt='star' className='w-4' />
-                  <img src={StarFull} alt='star' className='w-4' />
-                  <img src={StarFull} alt='star' className='w-4' />
-                  <img src={StarFull} alt='star' className='w-4' />
-                  <span className='ml-2'>4.5</span>
-                </div>
-              </li>
-            </ul>
-
-            <button className='bg-white py-2.5 rounded-md shadow-md my-3 flex-center gap-2.5'>
-              <img src={PlusCircle} alt="plus" className='w-5' />
-              다른 동화 둘러보기</button>
-          </div>
         </div> 
       </div>
     </div>

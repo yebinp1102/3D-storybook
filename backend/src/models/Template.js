@@ -14,7 +14,11 @@ const templateSchema = mongoose.Schema({
     type: Array,
     default: []
   },
-  views: {
+  isAvailable: {
+    type: Boolean,
+    default: false,
+  },
+  sold: {
     type: Number,
     default: 0,
   }

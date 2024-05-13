@@ -30,9 +30,18 @@ export type CartItem = {
 }
 
 export type OrderItem = {
-  id: string;
-  productId: string;
-  productTitle: string;
+  user: {
+    email: string,
+    name: string,
+    id: string
+  },
+  product: {
+    dateOfPurchase: string,
+    title: string,
+    id: string,
+    price: number,
+    paymentId: string
+  } 
 }
 
 export type OrderInfo = {
@@ -53,8 +62,9 @@ export type TemplateItem = {
   title: string;
   description: string;
   price: number;
-  views: number;
+  sold: number;
   images: [string];
+  isAvailable: boolean;
 }
 
 export type PaymentType = {

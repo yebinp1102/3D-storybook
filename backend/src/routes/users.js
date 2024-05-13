@@ -142,7 +142,7 @@ router.post('/payment', auth, async (req, res) => {
   async.eachSeries(transactionData.product, async (item) => {
     await Template.updateOne(
       {_id: item.id},
-      { $inc: { "views" : 1 } }
+      { $inc: { "sold" : 1 } }
     )
   }, (err) => {
     if(err) return res.status(500).send({message: '성공적으로 구매 완료했습니다.'})

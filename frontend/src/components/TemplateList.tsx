@@ -15,17 +15,16 @@ const TemplateList = ({temp, handleHover, idx} : Props) => {
       className="h-[250px] cursor-pointer relative w-full rounded-lg overflow-hidden transition-all shadow-lg border-white border-2 bg-black/50 hover:border-primary-main hover:scale-105"
       onClick={() => navigate(`/explore/detail/${temp._id}`)}
     >
-      {temp.images[0] ? (
-        <img 
-          src={`${import.meta.env.VITE_SERVER_URL}/${temp.images[0]}`}
-          alt='thumbnail'
-          className='w-full h-full object-cover absolute'
-        />
-      ): (
-        <div className='font-bold text-lg w-full h-full flex-center bg-slate-700 text-white'>
-          Comming soon
-        </div>
+      <img 
+        src={`${import.meta.env.VITE_SERVER_URL}/${temp.images[0]}`}
+        alt='thumbnail'
+        className='w-full h-full object-cover absolute'
+      />
+      
+      {!temp.isAvailable && (
+        <h1 className='absolute bg-gray-900 text-white bg-opacity-80 w-full h-full flex-center'>Comming Soon</h1>
       )}
+
       <div className='absolute text-white bg-primary-main w-16 h-16 bottom-0 left-0 rounded-tr-full'>
         <p className='left-2 top-6 font-semibold absolute'>NEW</p>
       </div>
