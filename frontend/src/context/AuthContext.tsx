@@ -63,7 +63,7 @@ const AuthProvider = ({children}: {children: React.ReactNode}) => {
         // user.cart 상세 get
         if(currentUser.cart.length > 0){
           const ids:string[] = []
-          currentUser.cart.forEach((id) => {
+          currentUser.cart.forEach((id: {id: string}) => {
             ids.push(id.id)
           })
           const cartItems = await fetchCartItems(ids);

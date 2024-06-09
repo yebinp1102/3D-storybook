@@ -1,4 +1,4 @@
-const replaceFragmentShader = (fragmentShader) =>
+const replaceFragmentShader = (fragmentShader: any) =>
   fragmentShader
     .replace(
       `#include <common>`,
@@ -34,11 +34,11 @@ fadeOpacity = exponentialEasing(fadeOpacity, 0.93);
 vec4 diffuseColor = vec4( diffuse, fadeOpacity * opacity );`
     );
 
-export const fadeOnBeforeCompile = (shader) => {
+export const fadeOnBeforeCompile = (shader: any) => {
   shader.fragmentShader = replaceFragmentShader(shader.fragmentShader);
 };
 
-export const fadeOnBeforeCompileFlat = (shader) => {
+export const fadeOnBeforeCompileFlat = (shader: any) => {
   shader.fragmentShader = replaceFragmentShader(shader.fragmentShader).replace(
     `#include <output_fragment>`,
     `gl_FragColor = diffuseColor;`

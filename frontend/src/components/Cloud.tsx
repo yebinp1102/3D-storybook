@@ -6,7 +6,7 @@ const Cloud = ({opacity, ...props}: any) => {
 
   return (
     <group {...props} dispose={null}>
-      <mesh geometry={nodes.Mball001.geometry}>
+      <mesh geometry={(nodes.Mball001 as THREE.Mesh).geometry}>
         <meshStandardMaterial 
           envMapIntensity={2}
           transparent

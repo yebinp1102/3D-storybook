@@ -67,7 +67,7 @@ export const addToCart = async (id: string) => {
     const res = await axiosInstance.post(`/users/addToCart`, {id});
     if(res.status !== 200) throw Error;
     return res.status;
-  }catch(err){
+  }catch(err: any){
     return err?.response.data.message;
   }
 }
@@ -96,7 +96,7 @@ export const payment = async (body: PaymentType) => {
     const res = await axiosInstance.post(`/users/payment`, body);
     if(res.status !== 200) throw Error;
     return res.status
-  }catch(err){
+  }catch(err: any){
     return err?.response.data.message;
   }
 }

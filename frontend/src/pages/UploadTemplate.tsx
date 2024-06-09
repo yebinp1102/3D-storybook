@@ -23,7 +23,7 @@ const UploadTemplate = () => {
     }));
   }
 
-  const handleImages = (newImages) => {
+  const handleImages = (newImages: any) => {
     setTemplate((prevState) => ({
       ...prevState,
       images: newImages

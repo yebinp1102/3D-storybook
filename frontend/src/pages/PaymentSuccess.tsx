@@ -3,6 +3,7 @@ import Wallet from "../../public/images/Wallet.svg";
 import { useUserContext } from "../context/AuthContext";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { OrderItem } from "../types";
 
 
 const PTag = ({title, text}: {title: string, text: string}) => {
@@ -17,7 +18,7 @@ const PTag = ({title, text}: {title: string, text: string}) => {
 const PaymentSuccess = () => {
   const navigate = useNavigate();
   const {user} = useUserContext();
-  const [order, setOrder] = useState();
+  const [order, setOrder] = useState<OrderItem>();
 
   useEffect(() => {
     let lastIdx = user.order.length-1;

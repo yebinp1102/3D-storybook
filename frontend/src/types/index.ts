@@ -35,13 +35,13 @@ export type OrderItem = {
     name: string,
     id: string
   },
-  product: {
+  product: [{
     dateOfPurchase: string,
     title: string,
     id: string,
     price: number,
     paymentId: string
-  } 
+  }]
 }
 
 export type OrderInfo = {

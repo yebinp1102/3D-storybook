@@ -2,12 +2,17 @@ import Dropzone from "react-dropzone"
 import axiosInstance from "../utils/axios";
 import { toast } from "react-toastify";
 
-const FileUpload = ({onImageChange, images}) => {
+type Props = {
+  onImageChange: any,
+  images: any
+}
 
-  const handleDrop = async (files) => {
+const FileUpload = ({onImageChange, images}: Props) => {
+
+  const handleDrop = async (files: any) => {
     let formData = new FormData();
     const config = {
-      header: {'content-type': 'multipart/form-data'}
+      headers: {'content-type': 'multipart/form-data'}
     }
 
     formData.append('file', files[0]);
@@ -21,7 +26,7 @@ const FileUpload = ({onImageChange, images}) => {
     }
   }
 
-  const handleDelete = (image) => {
+  const handleDelete = (image: any) => {
     const currentIndex = images.indexOf(image);
     let newImages = [...images];
     newImages.splice(currentIndex, 1);
@@ -41,7 +46,7 @@ const FileUpload = ({onImageChange, images}) => {
         )}
       </Dropzone>
       <div className="border min-h-24 flex">
-        {images.map(image => (
+        {images.map((image: any) => (
           <div key={image} onClick={() => handleDelete(image)}>
             <img 
               src={`${import.meta.env.VITE_SERVER_URL}/${image}`} 
