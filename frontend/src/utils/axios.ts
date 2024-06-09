@@ -1,7 +1,7 @@
 import axios from "axios";
 
 const axiosInstance = axios.create({
-  baseURL: "3d-storybook-api.vercel.app",
+  baseURL: "https://3d-storybook-api.vercel.app",
 })
 
 
