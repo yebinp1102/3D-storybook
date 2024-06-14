@@ -38,7 +38,7 @@ app.use((err, req, res, next) => {
   res.send(err.message || 'Error from server');
 })
 
-app.use(express.static(path.join(__dirname, '/uploads')))
-
+// uploads 디렉토리에 있는 이미지 파일을 제공하기 위한 미들웨어
+app.use(express.static('/uploads'))
 
 app.listen(3000, () => console.log(`server is running on port ${PORT}`))
