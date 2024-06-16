@@ -18,7 +18,7 @@ export const signInAccount = async(user: {email:string, password: string}) => {
   try{
     const res = await axiosInstance.post('/users/login', user);
     if(res.status !== 200) throw Error;
-    localStorage.setItem('accessToken', res.data.accessToken);
+    sessionStorage.setItem('accessToken', res.data.accessToken);
     return res.status;
   }catch(err){
     return err;

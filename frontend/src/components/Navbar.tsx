@@ -17,7 +17,7 @@ const Navbar = ({toggleOn, setToggleOn} : Props) => {
   const handleLogout = () => {
     setUser(INITIAL_USER);
     setIsAuthenticated(false);
-    localStorage.removeItem('accessToken');
+    sessionStorage.removeItem('accessToken');
     navigate('/login');
   }
 
