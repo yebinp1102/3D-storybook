@@ -77,7 +77,7 @@ const Explore = () => {
             + 새 템플릿 정보 등록
           </button>
         }
-        <div className='grid grid-cols-2 lg:grid-cols-3 gap-8  h-full w-full'>
+        <div className='grid grid-cols-2 lg:grid-cols-3 gap-8 w-full'>
           {templates.length > 0 && templates?.map((temp: TemplateItem, idx: number) => (
             <TemplateList key={temp._id} temp={temp} handleHover={handleHover} idx={idx} />
           ))}
