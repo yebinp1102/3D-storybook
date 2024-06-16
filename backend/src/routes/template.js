@@ -12,7 +12,7 @@ const S3 = require('aws-sdk/clients/s3')
 
 const BucketName = process.env.AWS_BUCKET_NAME;
 const region = process.env.AWS_REGION;
-const accessKeyId = process.env.AWS_ACCESS_KEY;
+const accessKeyId = process.env.AWS_ACCESS_KEY_ID;
 const secretAccessKey = process.env.AWS_SECRET_ACCESS_KEY;
 
 // AWS S3 설정
@@ -26,7 +26,6 @@ const storage = multer.memoryStorage();
 const upload = multer({ storage })
 
 const uploadToS3 = (file) => {
-  console.log(file);
   const uploadParams = {
     Bucket: BucketName,
     Key: file.originalname,

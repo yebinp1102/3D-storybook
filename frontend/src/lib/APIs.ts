@@ -77,7 +77,6 @@ export const fetchCartItems = async (cartItemsId: string[]) => {
     const {data} = await axiosInstance.get(`/template/${cartItemsId}?type=array`);
     return data;
   }catch(err){
-    console.log(err);
     return err;
   }
 }

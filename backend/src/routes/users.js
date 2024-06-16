@@ -24,7 +24,6 @@ router.post('/register', async (req, res) => {
     await user.save();
     return res.sendStatus(200);
   }catch(err){
-    console.log(err);
     return res.sendStatus(500);
   }
 })
@@ -54,7 +53,6 @@ router.post('/login', async(req, res) => {
 
     return res.status(200).json({user: userData, accessToken})
   }catch(err){
-    console.log(err);
     return res.status(500).send(err);
   }
 })
@@ -103,7 +101,6 @@ router.delete('/deleteFromCart', auth, async (req, res) => {
     )
     return res.sendStatus(200);
   }catch(err){
-    console.log(err);
     return res.status(500)
   }
 })
