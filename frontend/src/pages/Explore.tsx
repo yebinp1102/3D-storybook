@@ -26,12 +26,10 @@ const Explore = () => {
     return <h1>Loading...</h1>
   }
 
-  console.log(templates);
-
   return (
     <div className="w-full flex_col relative transition-all">
       <img 
-        src={`${import.meta.env.VITE_SERVER_URL}/${templates[hoverIdx]?.images[0]}`}
+        src={`${templates[hoverIdx]?.images[0]}`}
         alt='banner'
         className='w-full right-0 h-[600px] object-cover absolute'
       />
@@ -76,11 +74,11 @@ const Explore = () => {
             onClick={() => navigate('/upload_template')}
             className='border self-end border-primary-main w-fit text-primary-main py-1.5 px-6 rounded-lg mb-6'
           >
-            + 새로운 템플릿 추가하기
+            + 새 템플릿 정보 등록
           </button>
         }
         <div className='grid grid-cols-2 lg:grid-cols-3 gap-8  h-full w-full'>
-          {templates?.map((temp: TemplateItem, idx: number) => (
+          {templates.length > 0 && templates?.map((temp: TemplateItem, idx: number) => (
             <TemplateList key={temp._id} temp={temp} handleHover={handleHover} idx={idx} />
           ))}
         </div>

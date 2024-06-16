@@ -16,7 +16,7 @@ const TemplateList = ({temp, handleHover, idx} : Props) => {
       onClick={() => navigate(`/explore/detail/${temp._id}`)}
     >
       <img 
-        src={`${import.meta.env.VITE_SERVER_URL}/${temp.images[0]}`}
+        src={`${temp.images[0]}`}
         alt='thumbnail'
         className='w-full h-full object-cover absolute'
       />

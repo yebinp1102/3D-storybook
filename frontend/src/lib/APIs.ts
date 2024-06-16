@@ -37,8 +37,8 @@ export const getCurrentUser = async () => {
 
 export const uploadTemplate = async (template: Template) => {
   try{
-    const {data} = await axiosInstance.post('/template/create', template);
-    return data;
+    const res = await axiosInstance.post('/template/create', template);
+    return res.status;
   }catch(err){
     return err;
   }

@@ -16,7 +16,7 @@ const ListItem = ({fileName, title, code, price, handleDeleteFromCart}: Props) =
     <div className="flex items-center justify-between p-4 border-slate-200 border-t">
     <div className='flex gap-8 items-center'>
       <img 
-        src={`${import.meta.env.VITE_SERVER_URL}/${fileName}`}
+        src={`${fileName}`}
         alt="item_img"
         className="border w-60 h-40 object-cover cursor-pointer"
         onClick={() => navigate(`/explore/detail/${code}`)}
