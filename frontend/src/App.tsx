@@ -20,10 +20,10 @@ import PaymentSuccess from "./pages/PaymentSuccess";
 
 const App = () => {
   return (
-    <div className="w-screen">
+    <div className="w-screen min-h-screen">
       <ToastContainer 
-        position="bottom-right"
-        theme="light"
+        position="top-center"
+        theme="colored"
         pauseOnHover
         autoClose={1500}
       />

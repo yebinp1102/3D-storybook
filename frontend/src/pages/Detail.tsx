@@ -43,7 +43,7 @@ const Detail = () => {
     <div>
       <div className="w-full flex_col relative pb-28">
         <img 
-          src={`${template?.images}`}
+          src={`${template?.images[0]}`}
           alt='bg_banner'
           className='absolute w-full object-cover h-[700px] top-0 left-0 z-1'
         />
@@ -73,7 +73,7 @@ const Detail = () => {
                 {/* img */}
                 <div className="flex_col gap-4 w-[280px]">
                   <img 
-                    src={`${template?.images}`}
+                    src={`${template?.images[0]}`}
                     alt='동화_이미지'
                     className='border max-w-[280px] w-full h-[340px] relative object-cover'
                   />
@@ -129,12 +129,12 @@ const Detail = () => {
               <div className="flex_col gap-3 max-w-[200px]">
                 <h1 className='text-xl'>갤러리</h1>
                 <img 
-                  src={`${template?.images}`} 
+                  src={`${template?.images[0]}`} 
                   alt="갤러리01" className='min-w-[180px] w-full object-cover h-[100px] bg-black border' 
                 />
                 <ul className=" grid grid-cols-3 gap-3">
-                  <img src={`${template?.images}`} alt='갤02' className='w-full object-cover bg-black border h-[55px]' />
-                  <img src={`${template?.images}`} alt='갤03' className='w-full object-cover bg-black border h-[55px]' />
+                  <img src={`${template?.images[0]}`} alt='갤02' className='w-full object-cover bg-black border h-[55px]' />
+                  <img src={`${template?.images[0]}`} alt='갤03' className='w-full object-cover bg-black border h-[55px]' />
                   <div className='w-full bg-white border h-[55px] text-xs flex-center'>
                     <img src={Plus} alt='plus' className='w-3 mr-0.5' />
                     더보기

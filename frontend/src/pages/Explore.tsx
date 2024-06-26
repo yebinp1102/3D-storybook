@@ -5,6 +5,7 @@ import TemplateList from '../components/TemplateList';
 import { TemplateItem } from '../types';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../context/AuthContext';
+import ImageLoad from '../components/ImageLoad';
 
 const Explore = () => {
   const navigate = useNavigate();
@@ -28,11 +29,13 @@ const Explore = () => {
 
   return (
     <div className="w-full flex_col relative transition-all">
-      <img 
-        src={`${templates[hoverIdx]?.images[0]}`}
-        alt='banner'
-        className='w-full right-0 h-[600px] object-cover absolute'
+      <ImageLoad 
+        bgCSS="blur-load w-full right-0 h-[600px] bg-cover bg-center bg-no-repeat absolute z-0"
+        bgImg={templates[hoverIdx]?.images[1]}
+        imgCSS="w-full right-0 h-full object-cover object-center"
+        img={templates[hoverIdx]?.images[0]}
       />
+
       <div className='bg-gradient-to-r from-white to-white/0 w-full h-[600px] absolute'></div>
       <div className='bg-gradient-to-r from-white/50 to-white/0 w-full h-[600px] absolute'></div>
 

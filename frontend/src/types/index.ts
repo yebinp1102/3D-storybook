@@ -63,7 +63,7 @@ export type TemplateItem = {
   description: string;
   price: number;
   sold: number;
-  images: [string];
+  images: string[];
   isAvailable: boolean;
 }
 

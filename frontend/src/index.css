@@ -77,3 +77,8 @@ input[type=number] {
 .order-box-title{
   @apply border-b-[3px] pb-4 font-bold text-lg;
 }
+
+.blur-load {
+  background-size: cover;
+  background-position: center;
+}
