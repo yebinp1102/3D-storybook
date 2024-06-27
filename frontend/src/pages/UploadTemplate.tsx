@@ -1,9 +1,10 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useUploadNewTemplate } from "../lib/queriesAndMutations";
 import FileUpload from "../components/FileUpload";
 import Spinner from "../components/Spinner";
 import { toast } from "react-toastify";
+import { useUserContext } from "../context/AuthContext";
 
 const INITIAL_TEMPLATE = {
   title: "",
@@ -16,6 +17,7 @@ const UploadTemplate = () => {
   const navigate = useNavigate();
   const [template, setTemplate] = useState(INITIAL_TEMPLATE);
   const { mutateAsync: uploadTemplate, isPending} = useUploadNewTemplate();
+  const {user} = useUserContext();
 
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
     const { name, value } = e.target;
@@ -46,6 +48,13 @@ const UploadTemplate = () => {
       return navigate("/explore");
     }else toast.error('템플릿 생성에 실패했습니다.');
   };
+
+  useEffect(() => {
+    if(!user.isAdmin){
+      toast.error('접근 권한이 없는 사용자입니다.');
+      navigate('/')
+    }
+  }, [user])
 
   return (
     <section className="max-w-7xl mx-auto px-4 my-20">

@@ -61,6 +61,10 @@ const Order = () => {
   }
 
   useEffect(() => {
+    if(!user.id){
+      navigate('/');
+      toast.error('잘못된 접근입니다.');
+    }
     handler();
   },[user, cartDetails])
 

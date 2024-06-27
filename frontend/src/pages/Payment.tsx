@@ -1,10 +1,19 @@
 import { useNavigate } from "react-router-dom";
 import OrderList from "../components/payment/OrderList";
 import { useUserContext } from "../context/AuthContext";
+import { useEffect } from "react";
+import { toast } from "react-toastify";
 
 const Payment = () => {
   const navigate = useNavigate();
   const { user } = useUserContext();
+
+  useEffect(() => {
+    if(!user.id){
+      navigate('/');
+      toast.error('잘못된 접근입니다.');
+    }
+  },[user])
 
   return (
     <div className="max-w-6xl mx-auto w-full py-20">
