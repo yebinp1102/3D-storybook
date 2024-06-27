@@ -6,6 +6,7 @@ import { TemplateItem } from '../types';
 import { useNavigate } from 'react-router-dom';
 import { useUserContext } from '../context/AuthContext';
 import ImageLoad from '../components/ImageLoad';
+import ExploreLoading from './ExploreLoading';
 
 const Explore = () => {
   const navigate = useNavigate();
@@ -24,7 +25,7 @@ const Explore = () => {
   }, [allTemplates])
 
   if(isGettingTemplates || !templates){
-    return <h1>Loading...</h1>
+    return <ExploreLoading />
   }
 
   return (

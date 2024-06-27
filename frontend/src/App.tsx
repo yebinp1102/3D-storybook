@@ -5,7 +5,6 @@ import { Route, Routes } from "react-router-dom";
 import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 import LoadingPage from "./pages/LoadingPage";
-import ExploreLoading from "./pages/ExploreLoading";
 
 // 컴포넌트 동적 로드
 const ExploreProjects = lazy(() => import("./pages/ExploreProjects"));

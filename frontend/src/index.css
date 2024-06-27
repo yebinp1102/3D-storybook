@@ -81,4 +81,5 @@ input[type=number] {
 .blur-load {
   background-size: cover;
   background-position: center;
+  filter: blur;
 }
