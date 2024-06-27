@@ -83,11 +83,11 @@ const AuthProvider = ({children}: {children: React.ReactNode}) => {
 
   // 컴포넌트가 리렌더링 될 때마다 토큰 존재로 로그인 여부 판단. 
   // 토큰이 없으면 로그인 페이지로 라우팅
-  useEffect(() => {
-    const cookie = sessionStorage.getItem('accessToken');
-    if(cookie === "[]" || cookie === null || cookie === undefined) navigate('/login');
-    checkAuthUser();
-  },[])
+  // useEffect(() => {
+  //   const cookie = sessionStorage.getItem('accessToken');
+  //   if(cookie === "[]" || cookie === null || cookie === undefined) navigate('/login');
+  //   checkAuthUser();
+  // },[])
 
 
   const value = {user, setUser, isLoading, isAuthenticated, setIsAuthenticated, checkAuthUser, cartDetails, setCartDetails}

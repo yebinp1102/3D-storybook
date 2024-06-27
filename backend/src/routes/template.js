@@ -74,8 +74,7 @@ router.get('/', async (req, res) => {
   }
 })
 
-router.get('/:id', auth, async (req, res) => {
-  const type = req.query.type;
+router.get('/:id', async (req, res) => {
   const templateId = req.params.id.split(',');
   try{
     if(templateId){

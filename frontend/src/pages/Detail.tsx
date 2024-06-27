@@ -6,36 +6,33 @@ import Plus from '../../public/images/plus.svg';
 import Cart from '../../public/images/cart.svg';
 import { useAddToCart, useGetTemplate } from '../lib/queriesAndMutations';
 import { useNavigate, useParams } from 'react-router-dom';
-import { useEffect, useState } from 'react';
-import { TemplateItem } from '../types';
 import { toast } from 'react-toastify';
 import { useUserContext } from '../context/AuthContext';
+import LoadingPage from './LoadingPage';
 
 const Detail = () => {
   const navigate = useNavigate();
   const {id} = useParams();
-  const [template, setTemplate] = useState<TemplateItem>(null!);
   const {data: fetchedtemplate, isPending: isGettingTemplate} = useGetTemplate(id!);
   const {mutateAsync: addToCart} = useAddToCart();
-  const {checkAuthUser} = useUserContext();
+  const {user, checkAuthUser} = useUserContext();
 
   const handleAddToCart = async (id: string) => {
-    const responseStatus = await addToCart(id);
-    if(responseStatus !== 200){
-      toast.info(responseStatus);
+    if(user.id){
+      const responseStatus = await addToCart(id);
+      if(responseStatus !== 200){
+        toast.info(responseStatus);
+      }else{
+        toast.info('장바구니에 담겼습니다.');
+        checkAuthUser();
+      }
     }else{
-      toast.info('장바구니에 담겼습니다.');
-      checkAuthUser();
+      toast.error('로그인 한 유저에게만 제공되는 기능입니다.');
     }
-    
   }
 
-  useEffect(() => {
-    setTemplate(fetchedtemplate);
-  },[fetchedtemplate])
-
   if(isGettingTemplate || !fetchedtemplate){
-    return <h1>Loading . . .</h1>
+    return <LoadingPage />
   }
 
 
@@ -43,7 +40,7 @@ const Detail = () => {
     <div>
       <div className="w-full flex_col relative pb-28">
         <img 
-          src={`${template?.images[0]}`}
+          src={`${fetchedtemplate.images[0]}`}
           alt='bg_banner'
           className='absolute w-full object-cover h-[700px] top-0 left-0 z-1'
         />
@@ -56,7 +53,7 @@ const Detail = () => {
             {/* top */}
             <div className='flex-between border-b-2 border-black pb-4'>
 
-              <h1 className='text-3xl font-bold mb-2 '>{template?.title} (2024)</h1>
+              <h1 className='text-3xl font-bold mb-2 '>{fetchedtemplate?.title} (2024)</h1>
 
               {/* btns */}
               <ul className='flex gap-4 text-sm'>
@@ -73,7 +70,7 @@ const Detail = () => {
                 {/* img */}
                 <div className="flex_col gap-4 w-[280px]">
                   <img 
-                    src={`${template?.images[0]}`}
+                    src={`${fetchedtemplate.images[0]}`}
                     alt='동화_이미지'
                     className='border max-w-[280px] w-full h-[340px] relative object-cover'
                   />
@@ -86,7 +83,7 @@ const Detail = () => {
                     }
                     
                     <button 
-                      onClick={() => handleAddToCart(template._id)}
+                      onClick={() => handleAddToCart(fetchedtemplate._id)}
                       className='bg-white border py-1 shadow-md rounded-md flex-center gap-1.5'
                     >
                       <img src={Cart} alt='book_icon' className='w-[17px]' />
@@ -101,7 +98,7 @@ const Detail = () => {
                   <div className="flex_col w-full">
                     <p className='text-lg font-semibold mb-4'>템플릿 관련 정보 </p>
                     <ul className="flex gap-5 items-center text-sm border-y py-3 border-black">
-                      <li>판매: {template?.sold} 건</li>
+                      <li>판매: {fetchedtemplate.sold} 건</li>
                       <li className='flex'> 평점: &nbsp;
                         <img src={StarFull} alt='star' className='w-4' />
                         <img src={StarFull} alt='star' className='w-4' />
@@ -117,7 +114,7 @@ const Detail = () => {
                     <div className="flex_col gap-3 mt-8 ">
                       <h3 className='text-lg font-semibold text-emerald-500'>[ 상세정보 ]</h3>
                       <p className=' leading-8'>
-                        {template?.description}
+                        {fetchedtemplate.description}
                       </p>
                     </div>
                   </div>
@@ -129,12 +126,12 @@ const Detail = () => {
               <div className="flex_col gap-3 max-w-[200px]">
                 <h1 className='text-xl'>갤러리</h1>
                 <img 
-                  src={`${template?.images[0]}`} 
+                  src={`${fetchedtemplate.images[0]}`} 
                   alt="갤러리01" className='min-w-[180px] w-full object-cover h-[100px] bg-black border' 
                 />
                 <ul className=" grid grid-cols-3 gap-3">
-                  <img src={`${template?.images[0]}`} alt='갤02' className='w-full object-cover bg-black border h-[55px]' />
-                  <img src={`${template?.images[0]}`} alt='갤03' className='w-full object-cover bg-black border h-[55px]' />
+                  <img src={`${fetchedtemplate.images[0]}`} alt='갤02' className='w-full object-cover bg-black border h-[55px]' />
+                  <img src={`${fetchedtemplate.images[0]}`} alt='갤03' className='w-full object-cover bg-black border h-[55px]' />
                   <div className='w-full bg-white border h-[55px] text-xs flex-center'>
                     <img src={Plus} alt='plus' className='w-3 mr-0.5' />
                     더보기

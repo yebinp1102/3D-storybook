@@ -1,4 +1,4 @@
-import TemplateSkeleton from "../components/TemplateSkeleton";
+import Spinner from "../components/Spinner";
 
 const ExploreLoading = () => {
   return (
@@ -26,8 +26,10 @@ const ExploreLoading = () => {
 
       <div className="flex_col max-w-7xl mx-auto w-full relative white-shadow-box -top-20  p-8">
         <div className="grid grid-cols-2 lg:grid-cols-3 gap-8 w-full">
-          {[...Array(6)].map(() => (
-            <TemplateSkeleton />
+          {[...Array(6)].map((_, key) => (
+            <div key={key} className="flex flex-center h-[250px] w-full rounded-lg shadow-lg border-white border-2 bg-slate-500">
+              <Spinner />
+            </div>
           ))}
         </div>
       </div>
